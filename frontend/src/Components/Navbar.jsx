@@ -5,7 +5,7 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg nav-bg">
       <div className="container">
         <a className="navbar-brand fw-bold text-danger" href="/">
-          Soch Wallah
+          Gamifyzone
         </a>
         <button
           className="navbar-toggler"

@@ -4,13 +4,8 @@ from .models import Category, Blog, CategoryFeature
 from .serializers import CategorySerializer, BlogSerializer, CategoryFeatureSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-import openai
-from decouple import config
 from django.http import JsonResponse
 from django.db import connection
-
-# Set OpenAI API key
-openai.api_key = config('OPENAI_API_KEY')
 
 class CategoryListCreateAPIView(generics.ListCreateAPIView):
     queryset = Category.objects.filter(status=True)
@@ -26,22 +21,8 @@ class BlogListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = BlogSerializer
 
     def perform_create(self, serializer):
-        title = serializer.validated_data.get('title')
-        content = serializer.validated_data.get('content')
-        if not content:
-            content = self.generate_content(title)
-        serializer.save(content=content)
-
-    def generate_content(self, title):
-        prompt = f"Write a detailed blog post about {title}."
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt},
-            ]
-        )
-        return response.choices[0].message['content'].strip()
+        # Only save the content provided without generating it
+        serializer.save()
 
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'slug'
@@ -49,22 +30,8 @@ class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BlogSerializer
 
     def perform_update(self, serializer):
-        title = serializer.validated_data.get('title')
-        content = serializer.validated_data.get('content')
-        if not content:
-            content = self.generate_content(title)
-        serializer.save(content=content)
-
-    def generate_content(self, title):
-        prompt = f"Write a detailed blog post about {title}."
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt},
-            ]
-        )
-        return response.choices[0].message['content'].strip()
+        # Only update with the provided content without generating it
+        serializer.save()
 
 class CategoryFeatureListCreateAPIView(generics.ListCreateAPIView):
     queryset = CategoryFeature.objects.filter(status=True)
@@ -105,5 +72,4 @@ def get_category_names(request):
         rows = cursor.fetchall()
 
     data = [row[0] for row in rows]
-    return JsonResponse({'data':data})
-
+    return JsonResponse({'data': data})

@@ -6,11 +6,8 @@ export const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col-12 col-md-3">
-            <img src="https://images.top10.com/q_auto/v1/production/sites/uploads/photo/logo.20191212140001.svg" alt="Top10.com Logo" className="img-fluid" style={{width:"150px"}} />
-            <p className="small mt-4">Copyright © 2009 - 2024 Natural Intelligence Ltd. All Rights Reserved.</p>
-            <p className="small fw-bold">Mailing address:</p>
-            <p className="small">4023 Kennett Pike #50055</p>
-            <p className="small">Wilmington, DE 19807</p>
+            <img src="" alt="logo" className="img-fluid" style={{width:"150px"}} />
+            <p className="small mt-4">Copyright © 2009 - 2024 Gamifyzone Ltd. All Rights Reserved.</p>
           </div>
           <div className="col-12 col-md-9">
             <div className="row">
@@ -26,17 +23,11 @@ export const Footer = () => {
               </div>
               <div className="col-12 mt-3 text-start">
                 <p className="small">
-                  Designed to help users make confident decisions online, this
-                  website contains information about a wide range of products
-                  and services. Certain details, including but not limited to
-                  prices and special offers, are provided to us directly from
-                  our partners and are dynamic and subject to change at any time
-                  without prior notice. Though based on meticulous research, the
-                  information we share does not constitute legal or professional
-                  advice or forecast, and should not be treated as such.
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora earum maiores, nihil voluptatibus nemo quos nesciunt sequi ut! Assumenda unde voluptatem animi natus? Minus ad quo amet quod et id!
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis possimus eum temporibus iusto error? Nihil dolore sunt eos est optio nisi odit corrupti, architecto, adipisci quaerat sit commodi iste. Sapiente!
                 </p>
-                <p className="small">Reproduction in whole or in part is strictly prohibited.</p>
-                <p className="small">As an Amazon Associate we earn from qualifying purchases.</p>
+                <p className="small">Lorem, ipsum dolor sit amet consectetur adipisicing elit</p>
+                <p className="small">Lorem, ipsum dolor sit amet consectetur adipisicing elit</p>
               </div>
               <div className="col-12 mt-1">
                 <a href="#" className="social">
@@ -51,7 +42,7 @@ export const Footer = () => {
               </div>
               <div className="col-12 mt-3">
                 <p className="small">
-                  © 2009-2024 Natural Intelligence Ltd. All Rights Reserved.
+                  © 2009-2024 Gamifyzone Ltd. All Rights Reserved.
                 </p>
               </div>
             </div>
