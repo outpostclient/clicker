@@ -59,10 +59,10 @@ class ParentCategoryListView(APIView):
         categories = Category.objects.filter(parent__isnull=True)
         serializer = CategorySerializer(categories, many=True)
         return Response(serializer.data)
-    
+
 def get_category_names(request):
     query = """
-    SELECT name 
+    SELECT name
     FROM clicker_app_category as cat
     INNER JOIN clicker_app_blog as blog on cat.id = blog.category_id
     INNER JOIN clicker_app_categoryfeature as feature on blog.id = feature.blog_id

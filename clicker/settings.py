@@ -16,7 +16,8 @@ SECRET_KEY = 'django-insecure-ax2a7=oj+yuifrr%p+)pba0brqjnb3-sne+1aeig!9t*)a*2dj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*'] #development
+ALLOWED_HOSTS = ['145.223.21.48','https://gamifyzone.com/','gamifyzone.com','http://gamifyzone.com','www.gamifyzone.com'] #production
 
 # Application definition
 
@@ -63,6 +64,25 @@ CORS_ALLOW_METHODS = [
 
 ROOT_URLCONF = 'clicker.urls'
 
+#production
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.media',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+# development
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -84,12 +104,28 @@ WSGI_APPLICATION = 'clicker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+#development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'clicker',
         'USER': 'root',
         'PASSWORD': 'Admin1234',
+        'HOST': 'localhost',  # Set to the MySQL server host (e.g., 'localhost' or '127.0.0.1')
+        'PORT': '3306',      # Set to the MySQL server port (default is 3306)
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }
+}
+
+#production
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_clicker',
+        'USER': 'clicker',
+        'PASSWORD': 'R1a1j1a1t1#rajat',
         'HOST': 'localhost',  # Set to the MySQL server host (e.g., 'localhost' or '127.0.0.1')
         'PORT': '3306',      # Set to the MySQL server port (default is 3306)
         'OPTIONS': {
@@ -130,11 +166,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# ------------development -------- #
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# ------------development -------- #
+
+
+# -------production -------------#
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles'),  # Changed to staticfiles
+]
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join('/var/www/clicker', 'static')
+
+# ---------Production -----------#
 
 # Media files
 MEDIA_URL = '/media/'
