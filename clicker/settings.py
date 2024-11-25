@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-ax2a7=oj+yuifrr%p+)pba0brqjnb3-sne+1aeig!9t*)a*2dj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] #development
+#ALLOWED_HOSTS = ['*'] #development
 ALLOWED_HOSTS = ['145.223.21.48','https://gamifyzone.com/','gamifyzone.com','http://gamifyzone.com','www.gamifyzone.com'] #production
 
 # Application definition
@@ -83,21 +83,21 @@ TEMPLATES = [
 ]
 
 # development
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
+# ]
 
 WSGI_APPLICATION = 'clicker.wsgi.application'
 
@@ -105,19 +105,19 @@ WSGI_APPLICATION = 'clicker.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 #development
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'clicker',
-        'USER': 'root',
-        'PASSWORD': 'Admin1234',
-        'HOST': 'localhost',  # Set to the MySQL server host (e.g., 'localhost' or '127.0.0.1')
-        'PORT': '3306',      # Set to the MySQL server port (default is 3306)
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'clicker',
+#         'USER': 'root',
+#         'PASSWORD': 'Admin1234',
+#         'HOST': 'localhost',  # Set to the MySQL server host (e.g., 'localhost' or '127.0.0.1')
+#         'PORT': '3306',      # Set to the MySQL server port (default is 3306)
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
+#     }
+# }
 
 #production
 DATABASES = {
@@ -168,11 +168,11 @@ USE_TZ = True
 
 # ------------development -------- #
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # ------------development -------- #
 
