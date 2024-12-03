@@ -22,7 +22,7 @@ export const DataProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://145.223.21.48/api/categories/"
+          `${process.env.REACT_APP_API_URL}/categories/`
         );
         setCategories(response.data);
       } catch (error) {
@@ -35,7 +35,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const fetchBlogsData = async () => {
       try {
-        const response = await axios.get("http://145.223.21.48/api/blogs/");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/blogs/`);
         setBlogs(response.data);
       } catch (error) {
         console.log("error fetching categories", error);
@@ -47,7 +47,7 @@ export const DataProvider = ({ children }) => {
   const fetchSingleBlogData = async (slug) => {
     try {
       const response = await axios.get(
-        `http://145.223.21.48/api/blogs/${slug}`
+        `${process.env.REACT_APP_API_URL}/blogs/${slug}`
       );
       setSingleBlog(response.data);
     } catch (error) {
@@ -59,7 +59,7 @@ export const DataProvider = ({ children }) => {
     async (category_id, current_blog_id) => {
       try {
         const response = await axios.get(
-          `http://145.223.21.48/api/blogs/category/${category_id}/exclude/${current_blog_id}/`
+          `${process.env.REACT_APP_API_URL}/blogs/category/${category_id}/exclude/${current_blog_id}/`
         );
         setblogListExcludeCurrent(response.data);
       } catch (error) {
@@ -73,7 +73,7 @@ export const DataProvider = ({ children }) => {
     const fetchCategorysWithBlogs = async () => {
       try {
         const response = await axios.get(
-          "http://145.223.21.48/api/categories-with-blogs/"
+          `${process.env.REACT_APP_API_URL}/categories-with-blogs/`
         );
         setCategorysWithBlogs(response.data);
       } catch (error) {
@@ -87,7 +87,7 @@ export const DataProvider = ({ children }) => {
     const fetchParentCategorysWithBlogs = async () => {
       try {
         const response = await axios.get(
-          "http://145.223.21.48/api/parent-categories/"
+          `${process.env.REACT_APP_API_URL}/parent-categories/`
         );
         setParentCategorysWithBlogs(response.data);
       } catch (error) {
@@ -100,7 +100,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const fetchCategoryForCategoryFeatureNotNull = async () => {
       try {
-        const response = await axios.get("http://145.223.21.48/api/category-names/")
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/category-names/`)
         setFetchCategoryForCategoryFeatureNotNull(response.data);
       } catch (error) {
         console.log("Error in Fetching the setFetchCategoryForCategoryFeatureNotNull",error);

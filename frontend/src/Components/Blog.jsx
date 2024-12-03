@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DOMPurify from "dompurify";
 
 export const Blog = ({ index, blog, highlightLongWords }) => {
   return (
@@ -27,14 +26,14 @@ export const Blog = ({ index, blog, highlightLongWords }) => {
           <div className="col-12 col-lg-3 mb-3 mb-lg-0">
             <div className="row">
               <div>
-                {blog.image_url ? (
+                {blog.image ? (
                   <img
                     className="rounded-4"
-                    src={blog.image_url}
-                    alt={blog.title}
+                    src={blog.image}
+                    alt={blog.slug}
                   />
                 ) : (
-                  blog.image && <img src={blog.image} alt={blog.title} />
+                  blog.image_url && <img src={blog.image_url} alt={blog.title} />
                 )}
               </div>
             </div>

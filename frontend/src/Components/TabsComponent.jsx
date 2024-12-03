@@ -27,8 +27,8 @@ export const TabsComponent = ({ items }) => {
                 variant="pills"
                 className="justify-content-center tabs-parent "
               >
-                {items?.map((item) => (
-                  <Nav.Item>
+                {items?.map((item,index) => (
+                  <Nav.Item key={index}>
                     <Nav.Link eventKey={item.slug} className="tab-link">
                       <div className="tab-icon">🧘‍♂️</div>
                       <div>{item.name}</div>
@@ -39,27 +39,27 @@ export const TabsComponent = ({ items }) => {
             </Col>
             <Col sm={12}>
               <Tab.Content className="mt-4">
-                {items?.map((itemBlogs) => (
-                  <Tab.Pane eventKey={itemBlogs.slug}>
-                    <div className="d-flex flex-wrap">
-                      {itemBlogs.children?.map((child) => (
-                        <div className="tabs-child category-item tab-link1">
+                {items?.map((itemBlogs,index) => (
+                  <Tab.Pane key={index} eventKey={itemBlogs.slug}>
+                    <div className="d-flex flex-wrap align-items-center justify-content-center">
+                      {itemBlogs.children?.map((child,index) => (
+                        <div key={index} className="tabs-child category-item tab-link1">
                           <h4 className="mb-0 banner-tabs-sub-heading">
                             {child.name}
                           </h4>
                           <div className="d-flex">
                             <Link
                               to={`${child.slug}`}
-                              className="banner-tabs-sub-para"
+                              className="banner-tabs-sub-para text-primary"
                             >
                               Explore →
                             </Link>
-                            <Link
+                            {/* <Link
                               to={`${child.slug}`}
                               className="banner-tabs-sub-para text-danger"
                             >
                               Compare →
-                            </Link>
+                            </Link> */}
                           </div>
                         </div>
                       ))}

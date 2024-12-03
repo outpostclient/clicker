@@ -1,25 +1,26 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export const Footer = () => {
+
+  const getYear = () => {
+    return new Date().getFullYear();
+  }
   return (
-    <footer className="footer mt-auto py-5">
+    <footer className="footer mt-auto py-5 bg-primary">
       <div className="container">
         <div className="row">
           <div className="col-12 col-md-3">
             <img src="" alt="logo" className="img-fluid" style={{width:"150px"}} />
-            <p className="small mt-4">Copyright © 2009 - 2024 Gamifyzone Ltd. All Rights Reserved.</p>
+            <p className="small mt-4">Copyright © {getYear()} Gamifyzone Ltd. All Rights Reserved.</p>
           </div>
           <div className="col-12 col-md-9">
             <div className="row">
               <div className="col-12 small">
-                <a href="#">Blog</a>
-                <a href="#">Deals</a>
-                <a href="#">About Us</a>
-                <a href="#">Cookie Policy</a>
-                <a href="#">Terms of Use</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Sitemap</a>
-                <a href="#">Partner With Us</a>
+                <Link to="#">Blog</Link>
+                <Link to="about">About Us</Link>
+                <Link to="/privacyandpolicy">Cookie Policy</Link>
+                <Link to="/termsandcondition">Terms of Use</Link>
+                <Link to="/privacyandpolicy">Privacy Policy</Link>
               </div>
               <div className="col-12 mt-3 text-start">
                 <p className="small">
@@ -30,19 +31,19 @@ export const Footer = () => {
                 <p className="small">Lorem, ipsum dolor sit amet consectetur adipisicing elit</p>
               </div>
               <div className="col-12 mt-1">
-                <a href="#" className="social">
+                <Link to="#" className="social">
                   <i className="fab fa-facebook-f" />
-                </a>
-                <a href="#" className="social">
+                </Link>
+                <Link to="#" className="social">
                   <i className="fab fa-twitter" />
-                </a>
-                <a href="#" className="social">
+                </Link>
+                <Link to="#" className="social">
                   <i className="fab fa-instagram" />
-                </a>
+                </Link>
               </div>
               <div className="col-12 mt-3">
                 <p className="small">
-                  © 2009-2024 Gamifyzone Ltd. All Rights Reserved.
+                  © {getYear()} Gamifyzone Ltd. All Rights Reserved.
                 </p>
               </div>
             </div>

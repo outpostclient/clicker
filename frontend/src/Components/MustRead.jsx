@@ -8,7 +8,7 @@ export const MustRead = ({ item }) => {
       <div className="col-12">
         <div className="row align-items-center">
           <div className="col-5 mb-2">
-            <img height={"80px"} src={item.image_url} alt={`${item.title}`} />
+            <img height={"80px"} src={item.image} alt={`${item.title}`} />
           </div>
           <div className="col-7 mb-2">
             <Link className="small" to={`/${item.categorySlug}/${item.slug}`}>

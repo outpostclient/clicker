@@ -1,15 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: "Josefin Sans" !important;
 }
 
 .main-content {
@@ -129,7 +120,6 @@ code {
 }
 
 .blog-title-heading {
-  color: #ff4a64;
   transition: color 0.15s linear;
 }
 
@@ -152,7 +142,7 @@ img {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .tab-link {
@@ -201,6 +191,7 @@ a {
 }
 
 .category-item {
+  border-radius: 7px;
   text-align: center;
   margin: 20px;
 }
@@ -213,12 +204,12 @@ a {
 }
 
 .nav-bg {
-  background: url("../../blog_images/digital-background-4.png");
+  background: url("../../media/blog_images/digital-background-4.png");
   background-size: cover !important;
 }
 
 .home-bg {
-  background: url("../../blog_images/digital-background-4.png");
+  background: url("../../media/blog_images/digital-background-4.png");
   background-size: cover !important;
   min-height: 80vh;
 }
@@ -249,14 +240,13 @@ a {
   font-weight: 400;
   font-size: 14px;
   font-weight: 700;
-  color: #ff4a64;
   cursor: pointer;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   color: #797979;
-  padding: 0 10px 0 0;
+  /* padding: 0 10px 0 0; */
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -266,6 +256,16 @@ a {
   -ms-flex-align: center;
   align-items: center;
   font-weight: 600;
+}
+
+.ellipsis-one-lines {
+  display: -webkit-box; /* Fallback for older versions of Chrome/Safari */
+  -webkit-box-orient: vertical; /* Fallback for older versions of Chrome/Safari */
+  -webkit-line-clamp: 1; /* Number of lines to display before truncating */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5; /* Adjust based on your text styling */
+  max-height: 3em; /* Adjust based on your text styling */
 }
 
 .ellipsis-two-lines {
@@ -317,13 +317,17 @@ img:hover {
   filter: saturate(1.7);
 }
 
+.nav-pills .nav-item .tab-link{
+  background-color: #fff;
+  border: 1px solid #e9e7e7;
+}
+
 .navbar-nav .nav-item {
   font-weight: 700;
   margin: 0px 15px 0px 15px;
 }
 
 .footer {
-  background-color: #0b0b45;
   color: white;
   padding: 20px 0;
 }
@@ -459,7 +463,83 @@ img:hover {
   white-space: nowrap;
 }
 
-.inner-box-shadow
-{
+.inner-box-shadow {
   box-shadow: 10px 10px 20px #babecc, -10px -10px 20px #ffffff;
+}
+
+.tabs-parent {
+  min-height: 96px;
+}
+
+.tags-container {
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.tag-title {
+  position: relative;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1em;
+  padding-bottom: 17px;
+  margin: -0.12em 0 0 0;
+  overflow: hidden;
+}
+
+.tags-small-container a {
+  display: inline-block;
+  font-size: 15px;
+  text-transform: capitalize;
+  line-height: 1;
+  padding: 9px 16px;
+  margin-right: 6px;
+  margin-bottom: 13px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #b0b0b0;
+}
+
+.tags-small-container a:hover {
+  background-color: #4b1175;
+  color: #fff;
+  transition: all 0.4s ease-in-out;
+}
+
+.widget_categories ul
+{
+  padding-left: 0rem;
+  list-style: none;
+  margin-bottom: 50px;
+}
+
+.widget_categories ul li a {
+  display: block;
+  background-color: #dadada;
+  color: #000;
+  margin: 0;
+  padding: 16px 45px 19px 27px;
+  font-size: 16px;
+  line-height: 1.313;
+  font-weight: 700;
+  border-radius: 4px;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 10px;
+}
+
+.widget_categories ul li a:hover {
+  display: block;
+  background-color: transparent;
+  margin: 0;
+  padding: 16px 45px 19px 27px;
+  font-size: 16px;
+  line-height: 1.313;
+  background-color: #4b1175;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 4px;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 10px;
+  transition: all 0.4s ease-in-out;
 }

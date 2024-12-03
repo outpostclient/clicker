@@ -1,0 +1,11 @@
+// input.scss
+@import "../node_modules/bootstrap/scss/functions";
+
+// Override Bootstrap Variables
+$primary: #4b1175; // Change primary color
+$secondary: #9b1212; // Change secondary color
+
+// Import Bootstrap SCSS
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+

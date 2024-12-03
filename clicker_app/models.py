@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.utils.safestring import mark_safe
 from ckeditor.fields import RichTextField
 from django.utils import timezone
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -62,6 +63,7 @@ class CategoryFeature(models.Model):
     title = models.CharField(max_length=255)
     description = RichTextField(blank=True, null=True)
     detail_description = RichTextField(blank=True, null=True)
+    image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
     image_url = models.URLField(max_length=500,blank=True, null=True)
     rating = models.DecimalField(max_digits=3, decimal_places=2,blank=True, null=True)
     review = models.PositiveIntegerField(blank=True, null=True)
@@ -88,8 +90,16 @@ class CategoryFeature(models.Model):
     def __str__(self):
         return self.title
     
+    @property
+    def full_image_url(self):
+        if self.image:
+            # Construct the full URL for the image using MEDIA_URL
+            return f"{settings.MEDIA_URL}{self.image.name}"
+        return None
+    
 class AffiliateLink(models.Model):
     title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
     image_url = models.URLField(max_length=500)
     logo_url = models.URLField(max_length=500)
     description = RichTextField(blank=True, null=True)
@@ -100,3 +110,10 @@ class AffiliateLink(models.Model):
 
     def __str__(self):
         return self.title
+    
+    @property
+    def full_image_url(self):
+        if self.image:
+            # Construct the full URL for the image using MEDIA_URL
+            return f"{settings.MEDIA_URL}{self.image.name}"
+        return None

@@ -14,7 +14,7 @@ export const BlogFeature = ({ item }) => {
                 <div>
                   <img
                     style={{ width: "100%" }}
-                    src={feature.image_url}
+                    src={feature.image}
                     alt={feature.title}
                   />
                 </div>

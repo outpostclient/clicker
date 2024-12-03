@@ -13,7 +13,7 @@ export const AllCategoryList = () => {
     <div>
       <>
         <main className="container py-4">
-          <h1 className="text-center mb-4">Explore Our Top Category</h1>
+          <h1 className="text-center mb-4 fw-bold">Explore Our Top Category</h1>
           {memoizedCategories.length > 0 ? (
             <CategoryList categories={memoizedCategories} />
           ) : (

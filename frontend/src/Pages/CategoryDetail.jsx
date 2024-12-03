@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { DataContext } from "../Contexts/DataContext";
 import { Blog } from "../Components/Blog";
 import { BreadcrumbItems } from "../Components/Breadcrumb";
+import { Tags } from "../Components/Tags";
+import { WidgetCategories } from "../Components/WidgetCategories";
 
 export const CategoryDetail = () => {
   const { slug } = useParams();
   const { categories, blogs } = useContext(DataContext);
+  console.log("categories",categories);
 
   const category = categories?.find((cat) => cat.slug === slug);
 
@@ -19,7 +22,7 @@ export const CategoryDetail = () => {
     return words.map((word, index) => (
       <React.Fragment key={index}>
         {word.length >= 5 ? (
-          <span className="blog-title-heading">{word}</span>
+          <span className="blog-title-heading text-primary">{word}</span>
         ) : (
           word
         )}
@@ -38,8 +41,8 @@ export const CategoryDetail = () => {
       <div className="row">
         <BreadcrumbItems items={breadCrumbItems} />
       </div>
-      <div className="row">
-        <div className="col-12 col-lg-8">
+      <div className="row gx-5">
+        <div className="col-12 col-lg-9">
           <div className="row">
             {filterData.length > 0 ? (
               filterData.map((blog, index) => (
@@ -56,8 +59,9 @@ export const CategoryDetail = () => {
             )}
           </div>
         </div>
-        <div className="col-12 col-lg-4">
-          <h1>Hello World</h1>
+        <div className="col-12 col-lg-3">
+          <WidgetCategories {...{categories}}/>
+          <Tags {...{categories}}/>
         </div>
       </div>
     </div>
