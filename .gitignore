@@ -20,7 +20,6 @@ venv*/
 # Django specific
 db.sqlite3
 staticfiles/
-media/
 
 # Node.js
 node_modules/
