@@ -5,7 +5,7 @@ import { BlogFeature } from "../Components/BlogFeature";
 import { AffiliateLinks } from "../Components/AffiliateLinks";
 import DOMPurify from "dompurify";
 import { MustRead } from "../Components/MustRead";
-import {BreadcrumbItems} from "../Components/Breadcrumb"
+import { BreadcrumbItems } from "../Components/Breadcrumb";
 import { HeadMetaContent } from "../Components/HeadMetaContent";
 
 export const BlogPage = () => {
@@ -41,14 +41,14 @@ export const BlogPage = () => {
   const blogDate = (blogdate) => {
     // Ensure blogdate is a valid Date objec
 
-    const day = String(blogdate.getDate()).padStart(2, '0');
-    const month = String(blogdate.getMonth() + 1).padStart(2, '0');
+    const day = String(blogdate.getDate()).padStart(2, "0");
+    const month = String(blogdate.getMonth() + 1).padStart(2, "0");
     const year = blogdate.getFullYear();
 
     const formatDate = `${day}-${month}-${year}`;
 
     return formatDate;
-};
+  };
 
   return (
     <div>
@@ -57,7 +57,7 @@ export const BlogPage = () => {
           <div className="row">
             <BreadcrumbItems items={breadCrumbItems} />
           </div>
-          <HeadMetaContent singleBlog={singleBlog}/>
+          <HeadMetaContent singleBlog={singleBlog} />
           <div className="row">
             <div className="col-md-8 mb-4 mb-lg-0">
               <div className="main-content">
@@ -77,7 +77,7 @@ export const BlogPage = () => {
                 />
                 <h3>{singleBlog.featureTitle}</h3>
                 <ul>
-                  {singleBlog.category_feature?.map((feature,index) => (
+                  {singleBlog.category_feature?.map((feature, index) => (
                     <li key={index}>
                       <a href={feature.action_url}>{feature.title}</a> -{" "}
                       <span
@@ -101,8 +101,9 @@ export const BlogPage = () => {
                 {blogListExcludeCurrent?.length > 0 && (
                   <div className="bg-white p-4 rounded-3 shadow-lg">
                     <h4 className="fw-bold small mb-3">Must Reads</h4>
-                    {blogListExcludeCurrent.map((blog,index) => (
-                      <MustRead key={index}
+                    {blogListExcludeCurrent.map((blog, index) => (
+                      <MustRead
+                        key={index}
                         item={{
                           ...blog,
                           categorySlug: slug,

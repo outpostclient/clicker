@@ -1,6 +1,6 @@
 # myapp/serializers.py
 from rest_framework import serializers
-from .models import Category, Blog, CategoryFeature,AffiliateLink
+from .models import Category, Blog, CategoryFeature,AffiliateLink,SitePage,Contact
 from django.shortcuts import get_object_or_404
 
 class BlogSerializer(serializers.ModelSerializer):
@@ -56,5 +56,32 @@ class BlogSerializer(serializers.ModelSerializer):
             data['category_feature'] = CategoryFeatureSerializer(category_features, many=True).data
             data['affiliate_links'] = AffiliateLinkSerializer(affiliate_links, many=True).data
         return data
+    
+class SitePageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+    background_image = serializers.SerializerMethodField()
 
-        
+    class Meta:
+        model = SitePage
+        fields = ['id', 'title', 'slug', 'subtitle', 'description', 'image', 'background_image', 'status', 'date_created']
+
+    def get_image(self, obj):
+        request = self.context.get('request', None)
+        if request and obj.image:
+            return request.build_absolute_uri(obj.image.url)
+        if obj.image:
+            return obj.image.url  # Fallback to relative URL if no request
+        return None
+
+    def get_background_image(self, obj):
+        request = self.context.get('request', None)
+        if request and obj.background_image:
+            return request.build_absolute_uri(obj.background_image.url)
+        if obj.background_image:
+            return obj.background_image.url  # Fallback to relative URL if no request
+        return None
+    
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'

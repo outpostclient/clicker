@@ -1,7 +1,10 @@
 # myapp/views.py
 from rest_framework import generics
-from .models import Category, Blog, CategoryFeature
-from .serializers import CategorySerializer, BlogSerializer, CategoryFeatureSerializer
+from rest_framework.generics import RetrieveAPIView
+from rest_framework import status
+
+from .models import Category, Blog, CategoryFeature,SitePage
+from .serializers import CategorySerializer, BlogSerializer, CategoryFeatureSerializer,SitePageSerializer,ContactSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
@@ -73,3 +76,35 @@ def get_category_names(request):
 
     data = [row[0] for row in rows]
     return JsonResponse({'data': data})
+
+
+class SitePageRetrieveAPIView(RetrieveAPIView):
+    lookup_field = 'slug'  # Field used to retrieve the object
+    queryset = SitePage.objects.filter(status=True)  # Filter to only active pages
+    serializer_class = SitePageSerializer
+
+    def get_serializer_context(self):
+        # Pass the request context to the serializer
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
+    def get(self, request, *args, **kwargs):
+        slug = kwargs.get('slug')
+        try:
+            # Fetch the page object
+            page = self.queryset.get(slug=slug)
+            # Pass the context with the request to the serializer
+            serializer = self.serializer_class(page, context=self.get_serializer_context())
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except SitePage.DoesNotExist:
+            return Response({'error': 'Page not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+
+class ContactCreateAPIView(APIView):
+    def post(self, request):
+        serializer = ContactSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

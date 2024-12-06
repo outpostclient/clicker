@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, CategoryFeature, Blog, AffiliateLink
+from .models import Category, CategoryFeature, Blog, AffiliateLink, SitePage, Contact
 
 # Register your models here.
 
@@ -14,6 +14,30 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ('title', 'category__name')  # Enable search by title and category name
 
 admin.site.register(Blog, BlogAdmin)
+
+class SitePageAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'slug',
+        'status',  # Add 'status' here
+    )
+    list_editable = ('status',)
+    list_per_page = 50  # Display 50 items per page
+
+admin.site.register(SitePage, SitePageAdmin)
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = (
+        'first_name',
+        'last_name',
+        'status',
+        'phone_number',  # Add 'status' here
+        'email',  # Add 'status' here
+    )
+    list_editable = ('status',)
+    list_per_page = 50  # Display 50 items per page
+
+admin.site.register(Contact, ContactAdmin)
 
 class CategoryFeatureAdmin(admin.ModelAdmin):
     list_display = (
