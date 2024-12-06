@@ -117,3 +117,33 @@ class AffiliateLink(models.Model):
             # Construct the full URL for the image using MEDIA_URL
             return f"{settings.MEDIA_URL}{self.image.name}"
         return None
+    
+class SitePage(models.Model):
+    title = models.CharField(max_length=255, unique=False, help_text="Main title of the page")
+    subtitle = models.CharField(max_length=255, blank=True, null=True, help_text="Optional subtitle for the page")
+    slug = models.SlugField(max_length=255, unique=True, blank=True, help_text="URL-friendly identifier for the page")
+    description = RichTextField(blank=True, null=True, help_text="Detailed description or content of the page")
+    image = models.ImageField(upload_to='blog_images/', blank=True, null=True, help_text="Main image for the page")
+    background_image = models.ImageField(upload_to='background_images/', blank=True, null=True, help_text="Background image for the page")
+    status = models.BooleanField(default=True, help_text="Publish status of the page")
+    date_created = models.DateTimeField(default=timezone.now, help_text="Date and time when the page was created")
+
+    class Meta:
+        verbose_name = "Site Page"
+        verbose_name_plural = "Site Pages"
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return self.title
+    
+class Contact(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15)
+    email = models.EmailField()
+    message = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(default=True, help_text="Publish status of the page")
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.email}"

@@ -1,6 +1,6 @@
 # myapp/urls.py
 from django.urls import path
-from .views import CategoryListCreateAPIView, CategoryRetrieveUpdateDestroyAPIView, BlogListCreateAPIView, CategoryFeatureListCreateAPIView, BlogRetrieveUpdateDestroyAPIView,CategoryFeatureRetrieveUpdateDestroyAPIView,BlogListByCategoryAPIView,CategoryListWithBlogsAPIView,ParentCategoryListView,get_category_names
+from .views import CategoryListCreateAPIView, CategoryRetrieveUpdateDestroyAPIView, BlogListCreateAPIView, CategoryFeatureListCreateAPIView, BlogRetrieveUpdateDestroyAPIView,CategoryFeatureRetrieveUpdateDestroyAPIView,BlogListByCategoryAPIView,CategoryListWithBlogsAPIView,ParentCategoryListView,get_category_names,SitePageRetrieveAPIView,ContactCreateAPIView
 
 urlpatterns = [
     path('categories/', CategoryListCreateAPIView.as_view(), name='category-list-create'),
@@ -13,5 +13,7 @@ urlpatterns = [
     path('categories-with-blogs/', CategoryListWithBlogsAPIView.as_view(), name='categories-with-blogs'),
     path('parent-categories/', ParentCategoryListView.as_view(), name='parent-category-list'),
     path('category-names/', get_category_names, name='get_category_names'),
+    path('sitepage/<slug:slug>/', SitePageRetrieveAPIView.as_view(), name='sitepage-detail'),
+    path('contact/', ContactCreateAPIView.as_view(), name='contact-create'),
 ]
 

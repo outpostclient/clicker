@@ -16,7 +16,13 @@ export const DataProvider = ({ children }) => {
   const [blogListExcludeCurrent, setblogListExcludeCurrent] = useState([]);
   const [categorysWithBlogs, setCategorysWithBlogs] = useState([]);
   const [parentCategorysWithBlogs, setParentCategorysWithBlogs] = useState([]);
-  const [fetchCategoryForCategoryFeatureNotNull, setFetchCategoryForCategoryFeatureNotNull] = useState([]);
+  const [
+    fetchCategoryForCategoryFeatureNotNull,
+    setFetchCategoryForCategoryFeatureNotNull,
+  ] = useState([]);
+
+  const [fetchSitePageRecordUsingSlug, setFetchSitePageRecordUsingSlug] =
+    useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +41,9 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const fetchBlogsData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/blogs/`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/blogs/`
+        );
         setBlogs(response.data);
       } catch (error) {
         console.log("error fetching categories", error);
@@ -54,6 +62,17 @@ export const DataProvider = ({ children }) => {
       console.log("error fetching categories", error);
     }
   };
+
+  const fetchSitePageRecord = useCallback(async (sitepage_slug) => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/sitepage/${sitepage_slug}/`
+      );
+      setFetchSitePageRecordUsingSlug(response.data);
+    } catch (error) {
+      console.log("error in fetching the fetchSitePageRecord", error);
+    }
+  }, []);
 
   const fetchBlogListExcludeCurrent = useCallback(
     async (category_id, current_blog_id) => {
@@ -100,14 +119,19 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const fetchCategoryForCategoryFeatureNotNull = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/category-names/`)
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/category-names/`
+        );
         setFetchCategoryForCategoryFeatureNotNull(response.data);
       } catch (error) {
-        console.log("Error in Fetching the setFetchCategoryForCategoryFeatureNotNull",error);
+        console.log(
+          "Error in Fetching the setFetchCategoryForCategoryFeatureNotNull",
+          error
+        );
       }
-    }
+    };
     fetchCategoryForCategoryFeatureNotNull();
-  },[])
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -118,8 +142,10 @@ export const DataProvider = ({ children }) => {
       categorysWithBlogs,
       parentCategorysWithBlogs,
       fetchCategoryForCategoryFeatureNotNull,
+      fetchSitePageRecordUsingSlug,
       fetchSingleBlogData,
       fetchBlogListExcludeCurrent,
+      fetchSitePageRecord,
     }),
     [
       categories,
@@ -129,8 +155,10 @@ export const DataProvider = ({ children }) => {
       categorysWithBlogs,
       parentCategorysWithBlogs,
       fetchCategoryForCategoryFeatureNotNull,
+      fetchSitePageRecordUsingSlug,
       fetchSingleBlogData,
       fetchBlogListExcludeCurrent,
+      fetchSitePageRecord,
     ]
   );
 
