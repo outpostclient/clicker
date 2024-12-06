@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-ax2a7=oj+yuifrr%p+)pba0brqjnb3-sne+1aeig!9t*)a*2dj
 DEBUG = True
 
 #ALLOWED_HOSTS = ['*'] #development
-ALLOWED_HOSTS = ['145.223.21.48','https://gamifyzone.com/','gamifyzone.com','http://gamifyzone.com','www.gamifyzone.com'] #production
+ALLOWED_HOSTS = ['145.223.21.48','unfilterchoice.com','http://unfilterchoice.com/','www.unfilterchoice.com'] #production
 
 # Application definition
 
@@ -190,6 +190,6 @@ STATIC_ROOT = os.path.join('/var/www/clicker', 'static')
 
 # Media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join('/var/www/clicker', 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
