@@ -22,7 +22,7 @@ export const About = () => {
           <img
             className="rounded-5 mt-3"
             src={record?.image}
-            alt={record?.image}
+            alt={record?.title}
           />
         </div>
         <div className="col-12">

@@ -12,7 +12,7 @@ class Category(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
-    image_url = models.URLField(max_length=500, blank=True, null=True)
+    image_url = models.CharField(max_length=255,blank=True,null=True)
     description = RichTextField(blank=True, null=True)
     status = models.BooleanField(default=True)
     date_created = models.DateTimeField(default=timezone.now)

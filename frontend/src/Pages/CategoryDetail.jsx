@@ -5,6 +5,7 @@ import { Blog } from "../Components/Blog";
 import { BreadcrumbItems } from "../Components/Breadcrumb";
 import { Tags } from "../Components/Tags";
 import { WidgetCategories } from "../Components/WidgetCategories";
+import { HeadMetaContent } from "../Components/HeadMetaContent";
 
 export const CategoryDetail = () => {
   const { slug } = useParams();
@@ -41,6 +42,7 @@ export const CategoryDetail = () => {
       <div className="row">
         <BreadcrumbItems items={breadCrumbItems} />
       </div>
+      <HeadMetaContent singleBlog={category} />
       <div className="row gx-5">
         <div className="col-12 col-lg-9">
           <div className="row">

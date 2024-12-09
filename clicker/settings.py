@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-ax2a7=oj+yuifrr%p+)pba0brqjnb3-sne+1aeig!9t*)a*2dj
 DEBUG = True
 
 #ALLOWED_HOSTS = ['*'] #development
-ALLOWED_HOSTS = ['145.223.21.48','unfilterchoice.com','http://unfilterchoice.com/','www.unfilterchoice.com'] #production
+ALLOWED_HOSTS = ['145.223.21.48','unfilterchoice.com','http://unfilterchoice.com/','www.unfilterchoice.com','https://www.unfilterchoice.com/'] #production
 
 # Application definition
 
