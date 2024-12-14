@@ -17,7 +17,7 @@ export const Blog = ({ index, blog, highlightLongWords }) => {
             <div className="row">
               <div>
                 <Link to={blog.slug}>
-                  <p className="blog-heading mb-0">{highlightLongWords(blog.title)}</p>
+                  <p className="blog-heading mb-0 ellipsis-two-lines">{highlightLongWords(blog.title)}</p>
                 </Link>
                 <p className="mb-0 blog-para mt-1">{blog.subtitle}</p>
               </div>

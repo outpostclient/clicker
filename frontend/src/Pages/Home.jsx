@@ -77,7 +77,7 @@ export const Home = () => {
                           to={category.slug}
                           className="btn btn-outline-danger fw-bold"
                         >
-                          {`View ${category.name} Sites`}
+                          {`View ${category.name}`}
                         </Link>
                       </div>
                     </Col>

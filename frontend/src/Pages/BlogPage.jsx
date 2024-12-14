@@ -40,14 +40,14 @@ export const BlogPage = () => {
 
   const blogDate = (blogdate) => {
     // Ensure blogdate is a valid Date objec
+    // const day = String(blogdate.getDate()).padStart(2, "0");
+    // const month = String(blogdate.getMonth() + 1).padStart(2, "0");
+    // const year = blogdate.getFullYear();
+    console.log("blogdate",blogdate);
 
-    const day = String(blogdate.getDate()).padStart(2, "0");
-    const month = String(blogdate.getMonth() + 1).padStart(2, "0");
-    const year = blogdate.getFullYear();
+    // const formatDate = `${day}-${month}-${year}`;
 
-    const formatDate = `${day}-${month}-${year}`;
-
-    return formatDate;
+    return blogdate;
   };
 
   return (
@@ -63,7 +63,7 @@ export const BlogPage = () => {
               <div className="main-content">
                 <h1>{singleBlog.title}</h1>
                 <p className="text-muted">
-                  {singleBlog.author} | {singleBlog.date_created}
+                  {singleBlog.author} | {blogDate(singleBlog.date_created)}
                 </p>
                 <img
                   src={singleBlog.image}

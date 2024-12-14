@@ -6,7 +6,9 @@ export const AllCategoryList = () => {
   const { categories } = useContext(DataContext);
 
   // Use useMemo to memoize the categories value to avoid unnecessary re-renders
-  const memoizedCategories = useMemo(() => categories, [categories]);
+  const memoizedCategories = useMemo(() => {
+    return categories.filter((category) => category.parent !== null);
+  }, [categories]);
 
   console.log(memoizedCategories);
   return (

@@ -8,7 +8,7 @@ export const BreadcrumbItems = ({ items }) => {
     <Breadcrumb>
       {
         items.length > 0 ? (
-          items.map((item, index) => (
+          items?.map((item, index) => (
             <Breadcrumb.Item href={item.slug} key={index}>{item.title}</Breadcrumb.Item>
           ))
         ) : (
