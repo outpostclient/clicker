@@ -17,7 +17,9 @@ export const Blog = ({ index, blog, highlightLongWords }) => {
             <div className="row">
               <div>
                 <Link to={blog.slug}>
-                  <p className="blog-heading mb-0 ellipsis-two-lines">{highlightLongWords(blog.title)}</p>
+                  <p className="blog-heading mb-0 ellipsis-two-lines">
+                    {highlightLongWords(blog.title)}
+                  </p>
                 </Link>
                 <p className="mb-0 blog-para mt-1">{blog.subtitle}</p>
               </div>
@@ -27,13 +29,14 @@ export const Blog = ({ index, blog, highlightLongWords }) => {
             <div className="row">
               <div>
                 {blog.image ? (
-                  <img
-                    className="rounded-4"
-                    src={blog.image}
-                    alt={blog.slug}
-                  />
+                  <img className="rounded-4" src={blog.image} alt={blog.slug} />
+                ) : blog.image_url ? (
+                  <img src={blog.image_url} alt={blog.title} />
                 ) : (
-                  blog.image_url && <img src={blog.image_url} alt={blog.title} />
+                  <img
+                    src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
+                    alt="Placeholder"
+                  />
                 )}
               </div>
             </div>

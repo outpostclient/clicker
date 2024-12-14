@@ -12,11 +12,21 @@ export const BlogFeature = ({ item }) => {
             <div className="col-12 col-lg-3 mb-3 mb-lg-0">
               <div className="row">
                 <div>
-                  <img
-                    style={{ width: "100%" }}
-                    src={feature.image}
-                    alt={feature.title}
-                  />
+                  {feature.image ? (
+                    <img
+                    style={{width:"100%"}}
+                      className="rounded-4"
+                      src={feature.image}
+                      alt={feature.slug}
+                    />
+                  ) : feature.image_url ? (
+                    <img style={{width:"100%"}} src={feature.image_url} alt={feature.title} />
+                  ) : (
+                    <img
+                      src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
+                      alt="Placeholder"
+                    />
+                  )}
                 </div>
               </div>
             </div>

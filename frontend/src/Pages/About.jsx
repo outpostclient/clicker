@@ -19,11 +19,27 @@ export const About = () => {
           <h3 className="fw-bold">{record?.title}</h3>
         </div>
         <div className="col-12 col-lg-8 mx-auto">
-          <img
-            className="rounded-5 mt-3"
-            src={record?.image}
-            alt={record?.title}
-          />
+          <div>
+            {record.image ? (
+              <img
+                className="rounded-5 mt-3"
+                src={record.image}
+                alt={record.slug}
+              />
+            ) : record.image_url ? (
+              <img
+                className="rounded-5 mt-3"
+                src={record.image_url}
+                alt={record.title}
+              />
+            ) : (
+              <img
+                className="rounded-5 mt-3"
+                src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
+                alt="Placeholder"
+              />
+            )}
+          </div>
         </div>
         <div className="col-12">
           <p

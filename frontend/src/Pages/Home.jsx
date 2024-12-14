@@ -49,18 +49,35 @@ export const Home = () => {
                     {index + 1}
                   </span>
                   <div className="d-flex align-items-center justify-content-between">
-                    <Link to={`/${category.slug}`}><span className="mx-2 fw-bold">{category.name}</span></Link>
+                    <Link to={`/${category.slug}`}>
+                      <span className="mx-2 fw-bold">{category.name}</span>
+                    </Link>
                   </div>
                 </Accordion.Header>
                 <Accordion.Body>
                   <Row className="align-items-center mb-3">
                     <Col xs={12} lg={6}>
-                      <Image
-                        src={category.image}
-                        alt={category.slug}
-                        rounded
-                        className="shadow-lg w-100"
-                      />
+                      <div>
+                        {category.image ? (
+                          <img
+                            className="shadow-lg w-100 rounded"
+                            src={category.image}
+                            alt={category.slug}
+                          />
+                        ) : category.image_url ? (
+                          <img
+                            className="shadow-lg w-100 rounded"
+                            src={category.image_url}
+                            alt={category.title}
+                          />
+                        ) : (
+                          <img
+                            className="shadow-lg w-100 rounded"
+                            src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
+                            alt="Placeholder"
+                          />
+                        )}
+                      </div>
                     </Col>
                     <Col xs={12} lg={6}>
                       <p className="blog-heading fw-bold">{category.title}</p>

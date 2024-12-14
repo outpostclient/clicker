@@ -43,7 +43,7 @@ export const BlogPage = () => {
     // const day = String(blogdate.getDate()).padStart(2, "0");
     // const month = String(blogdate.getMonth() + 1).padStart(2, "0");
     // const year = blogdate.getFullYear();
-    console.log("blogdate",blogdate);
+    console.log("blogdate", blogdate);
 
     // const formatDate = `${day}-${month}-${year}`;
 
@@ -65,11 +65,27 @@ export const BlogPage = () => {
                 <p className="text-muted">
                   {singleBlog.author} | {blogDate(singleBlog.date_created)}
                 </p>
-                <img
-                  src={singleBlog.image}
-                  className="img-fluid rounded mb-4"
-                  alt={singleBlog.title}
-                />
+                <div>
+                  {singleBlog.image ? (
+                    <img
+                      className="img-fluid rounded mb-4"
+                      src={singleBlog.image}
+                      alt={singleBlog.slug}
+                    />
+                  ) : singleBlog.image_url ? (
+                    <img
+                      className="img-fluid rounded mb-4"
+                      src={singleBlog.image_url}
+                      alt={singleBlog.title}
+                    />
+                  ) : (
+                    <img
+                      className="img-fluid rounded mb-4"
+                      src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
+                      alt="Placeholder"
+                    />
+                  )}
+                </div>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(singleBlog.content),
