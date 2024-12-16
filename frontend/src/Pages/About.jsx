@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import DOMPurify from "dompurify";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
 
-export const About = () => {
+const About = () => {
   const about_Slug = "about-us";
   const { record, error } = useFetchSitePageRecords(about_Slug);
   console.log(record);
@@ -22,18 +22,21 @@ export const About = () => {
           <div>
             {record.image ? (
               <img
+              loading="lazy" 
                 className="rounded-5 mt-3"
                 src={record.image}
                 alt={record.slug}
               />
             ) : record.image_url ? (
               <img
+              loading="lazy" 
                 className="rounded-5 mt-3"
                 src={record.image_url}
                 alt={record.title}
               />
             ) : (
               <img
+              loading="lazy" 
                 className="rounded-5 mt-3"
                 src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
                 alt="Placeholder"
@@ -53,3 +56,5 @@ export const About = () => {
     </div>
   );
 };
+
+export default About;

@@ -1,40 +1,111 @@
-import React from "react";
-import { Home } from "./Pages/Home";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { DataProvider } from "./Contexts/DataContext";
-import { CategoryDetail } from "./Pages/CategoryDetail";
-import { BlogPage } from "./Pages/BlogPage";
-import { AllCategoryList } from "./Pages/AllCategoryList";
-import { Navbar } from "./Components/Navbar";
-import { Footer } from "./Components/Footer";
-import { NotFound } from "./Components/NotFound";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { HelmetProvider } from "react-helmet-async";
-import { About } from "./Pages/About";
-import { Contact } from "./Pages/Contact";
-import { PrivacyPolicy } from "./Pages/PrivacyPolicy";
-import { TermsAndConditions } from "./Pages/TermsAndConditions";
+
+const Home = React.lazy(() => import("./Pages/Home"));
+const AllCategoryList = React.lazy(() => import("./Pages/AllCategoryList"));
+const BlogPage = React.lazy(() => import("./Pages/BlogPage"));
+const CategoryDetail = React.lazy(() => import("./Pages/CategoryDetail"));
+const About = React.lazy(() => import("./Pages/About"));
+const Contact = React.lazy(() => import("./Pages/Contact"));
+const PrivacyPolicy = React.lazy(() => import("./Pages/PrivacyPolicy"));
+const TermsAndConditions = React.lazy(() =>
+  import("./Pages/TermsAndConditions")
+);
+const NotFound = React.lazy(() => import("./Components/NotFound"));
+const Navbar = React.lazy(() => import("./Components/Navbar"));
+const Footer = React.lazy(() => import("./Components/Footer"));
 
 function App() {
   return (
     <HelmetProvider>
       <DataProvider>
         <Router>
-          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Navbar />
+          </Suspense>
+
           <div style={{ minHeight: "85vh" }}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/all-list" element={<AllCategoryList />} />
-              <Route path="/:slug/:blogslug" element={<BlogPage />} />
-              <Route path="/:slug" element={<CategoryDetail />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacyandpolicy" element={<PrivacyPolicy />} />
-              <Route path="/termsandcondition" element={<TermsAndConditions />} />
-              <Route path="*" element={<NotFound />} />
+              <Route
+                path="/"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <Home />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/all-list"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <AllCategoryList />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/:slug/:blogslug"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <BlogPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/:slug"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <CategoryDetail />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/about"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <About />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/contact"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <Contact />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/privacyandpolicy"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <PrivacyPolicy />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/termsandcondition"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <TermsAndConditions />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <NotFound />
+                  </Suspense>
+                }
+              />
             </Routes>
           </div>
-          <Footer />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Footer />
+          </Suspense>
         </Router>
       </DataProvider>
     </HelmetProvider>

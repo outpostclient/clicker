@@ -5,7 +5,7 @@ import DOMPurify from "dompurify";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
 
 
-export const Contact = () => {
+const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -145,3 +145,5 @@ export const Contact = () => {
     </Container>
   );
 };
+
+export default Contact;

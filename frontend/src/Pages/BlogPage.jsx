@@ -8,7 +8,7 @@ import { MustRead } from "../Components/MustRead";
 import { BreadcrumbItems } from "../Components/Breadcrumb";
 import { HeadMetaContent } from "../Components/HeadMetaContent";
 
-export const BlogPage = () => {
+const BlogPage = () => {
   const { slug, blogslug } = useParams();
   const { fetchCategoryForCategoryFeatureNotNull } = useContext(DataContext);
 
@@ -68,18 +68,21 @@ export const BlogPage = () => {
                 <div>
                   {singleBlog.image ? (
                     <img
+                    loading="lazy"
                       className="img-fluid rounded mb-4"
                       src={singleBlog.image}
                       alt={singleBlog.slug}
                     />
                   ) : singleBlog.image_url ? (
                     <img
+                    loading="lazy"
                       className="img-fluid rounded mb-4"
                       src={singleBlog.image_url}
                       alt={singleBlog.title}
                     />
                   ) : (
                     <img
+                    loading="lazy"
                       className="img-fluid rounded mb-4"
                       src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
                       alt="Placeholder"
@@ -136,3 +139,5 @@ export const BlogPage = () => {
     </div>
   );
 };
+
+export default BlogPage;

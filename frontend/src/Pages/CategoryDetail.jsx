@@ -7,7 +7,7 @@ import { Tags } from "../Components/Tags";
 import { WidgetCategories } from "../Components/WidgetCategories";
 import { HeadMetaContent } from "../Components/HeadMetaContent";
 
-export const CategoryDetail = () => {
+const CategoryDetail = () => {
   const { slug } = useParams();
   const { categories, blogs } = useContext(DataContext);
   console.log("categories",categories);
@@ -70,3 +70,5 @@ export const CategoryDetail = () => {
     </div>
   );
 };
+
+export default CategoryDetail;

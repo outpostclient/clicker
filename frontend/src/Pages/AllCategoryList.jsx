@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from "react";
 import { CategoryList } from "../Components/CategoryList";
 import { DataContext } from "../Contexts/DataContext";
 
-export const AllCategoryList = () => {
+const AllCategoryList = () => {
   const { categories } = useContext(DataContext);
 
   // Use useMemo to memoize the categories value to avoid unnecessary re-renders
@@ -26,3 +26,5 @@ export const AllCategoryList = () => {
     </div>
   );
 };
+
+export default AllCategoryList;

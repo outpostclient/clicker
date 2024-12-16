@@ -3,7 +3,7 @@ import DOMPurify from "dompurify";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
 
-export const TermsAndConditions = () => {
+const TermsAndConditions = () => {
   const terms_Slug = "termsandcondition";
   const { record, error } = useFetchSitePageRecords(terms_Slug);
   console.log(record);
@@ -36,3 +36,5 @@ export const TermsAndConditions = () => {
     </Container>
   );
 };
+
+export default TermsAndConditions;

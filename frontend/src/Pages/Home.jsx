@@ -5,7 +5,7 @@ import { TabsComponent } from "../Components/TabsComponent";
 import DOMPurify from "dompurify";
 import { Accordion, Row, Col, Badge, Image, Card } from "react-bootstrap";
 
-export const Home = () => {
+const Home = () => {
   const { categorysWithBlogs } = useContext(DataContext);
   const { parentCategorysWithBlogs } = useContext(DataContext);
   console.log("categorysWithBlogs", categorysWithBlogs);
@@ -60,18 +60,21 @@ export const Home = () => {
                       <div>
                         {category.image ? (
                           <img
+                            loading="lazy"
                             className="shadow-lg w-100 rounded"
                             src={category.image}
                             alt={category.slug}
                           />
                         ) : category.image_url ? (
                           <img
+                            loading="lazy"
                             className="shadow-lg w-100 rounded"
                             src={category.image_url}
                             alt={category.title}
                           />
                         ) : (
                           <img
+                            loading="lazy"
                             className="shadow-lg w-100 rounded"
                             src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
                             alt="Placeholder"
@@ -106,12 +109,29 @@ export const Home = () => {
                         <div className="">
                           <Row className="align-items-center">
                             <Col xs={12} lg={6}>
-                              <Image
-                                className="rounded-2"
-                                src={blog.image}
-                                alt={blog.slug}
-                                fluid
-                              />
+                              {category.image ? (
+                                <Image
+                                  loading="lazy"
+                                  className="rounded-2"
+                                  src={blog.image}
+                                  alt={blog.slug}
+                                  fluid
+                                />
+                              ) : blog.image_url ? (
+                                <img
+                                  loading="lazy"
+                                  className="shadow-lg w-100 rounded"
+                                  src={blog.image_url}
+                                  alt={blog.title}
+                                />
+                              ) : (
+                                <img
+                                  loading="lazy"
+                                  className="shadow-lg w-100 rounded"
+                                  src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
+                                  alt="Placeholder"
+                                />
+                              )}
                             </Col>
                             <Col xs={12} lg={6}>
                               <Card.Body>
@@ -138,3 +158,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

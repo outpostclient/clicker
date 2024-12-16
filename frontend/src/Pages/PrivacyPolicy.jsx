@@ -3,7 +3,7 @@ import DOMPurify from "dompurify";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
 
-export const PrivacyPolicy = () => {
+const PrivacyPolicy = () => {
   const policy_Slug = "privacyandpolicy";
   const { record, error } = useFetchSitePageRecords(policy_Slug);
   console.log(record);
@@ -11,7 +11,7 @@ export const PrivacyPolicy = () => {
   if (error) return <div>{error}</div>;
 
   if (!record) {
-    return <div>Loading...</div>; // Show a loading message while fetching data
+    return <div>Loading...</div>;
   }
   return (
     <Container className="my-5">
@@ -22,7 +22,6 @@ export const PrivacyPolicy = () => {
               <Card.Title as="h1" className="text-center mb-4">
                 {record?.title}
               </Card.Title>
-
               <p
                 className="mt-5"
                 dangerouslySetInnerHTML={{
@@ -36,3 +35,5 @@ export const PrivacyPolicy = () => {
     </Container>
   );
 };
+
+export default PrivacyPolicy;

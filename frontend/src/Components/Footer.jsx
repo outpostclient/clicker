@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import DOMPurify from "dompurify";
-export const Footer = () => {
+const Footer = () => {
   const [footerData, setFooterData] = useState(null);
 
   useEffect(() => {
@@ -81,3 +81,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;

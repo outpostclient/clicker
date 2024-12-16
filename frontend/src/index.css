@@ -204,7 +204,7 @@ a {
 }
 
 .nav-bg, .home-bg {
-  background: url("../../media/blog_images/digital-background-4.png");
+  background: url("../../media/blog_images/digital-background-4.webp");
   background-size: cover !important;
 }
 
