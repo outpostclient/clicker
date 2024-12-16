@@ -46,12 +46,27 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# developement
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+#     "http://localhost:3001",
+#     "http://127.0.0.1:3001",
+# ]
+
+# development
+
+# production 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:3001",
+    "http://145.223.21.48",     # IP with HTTP
+    "https://145.223.21.48",    # IP with HTTPS
+    "http://unfilterchoice.com",    # Main domain with HTTP
+    "https://unfilterchoice.com",   # Main domain with HTTPS
+    "http://www.unfilterchoice.com",   # www subdomain with HTTP
+    "https://www.unfilterchoice.com",  # www subdomain with HTTPS
 ]
+
+# production
 
 CORS_ALLOW_METHODS = [
     'DELETE',
