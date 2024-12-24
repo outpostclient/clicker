@@ -20,6 +20,8 @@ export const DataProvider = ({ children }) => {
     fetchCategoryForCategoryFeatureNotNull,
     setFetchCategoryForCategoryFeatureNotNull,
   ] = useState([]);
+  const [pageViewState, setpageViewState] = useState([]); // Likes state
+
 
   const [fetchSitePageRecordUsingSlug, setFetchSitePageRecordUsingSlug] =
     useState(null);
@@ -133,6 +135,16 @@ export const DataProvider = ({ children }) => {
     fetchCategoryForCategoryFeatureNotNull();
   }, []);
 
+  const blogPageView = async(blogId) => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api/blogs/${blogId}/view/`);
+      console.log("reposne of page view",response.data);
+      setpageViewState(response.data.pageview);
+    } catch (error) {
+      console.error(`Error toggling like for blog ${blogId}:`, error);
+    }
+  }
+
   const value = useMemo(
     () => ({
       categories,
@@ -143,6 +155,8 @@ export const DataProvider = ({ children }) => {
       parentCategorysWithBlogs,
       fetchCategoryForCategoryFeatureNotNull,
       fetchSitePageRecordUsingSlug,
+      pageViewState,
+      blogPageView,
       fetchSingleBlogData,
       fetchBlogListExcludeCurrent,
       fetchSitePageRecord,
@@ -156,6 +170,8 @@ export const DataProvider = ({ children }) => {
       parentCategorysWithBlogs,
       fetchCategoryForCategoryFeatureNotNull,
       fetchSitePageRecordUsingSlug,
+      pageViewState,
+      blogPageView,
       fetchSingleBlogData,
       fetchBlogListExcludeCurrent,
       fetchSitePageRecord,

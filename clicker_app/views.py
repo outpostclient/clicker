@@ -2,7 +2,6 @@
 from rest_framework import generics
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import status
-
 from .models import Category, Blog, CategoryFeature,SitePage
 from .serializers import CategorySerializer, BlogSerializer, CategoryFeatureSerializer,SitePageSerializer,ContactSerializer
 from rest_framework.views import APIView
@@ -10,17 +9,20 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from django.db import connection
 
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view
+
 class CategoryListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Category.objects.filter(status=True)
+    queryset = Category.objects.filter(status=True).order_by('-updated_date', 'orderBy')
     serializer_class = CategorySerializer
 
 class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'slug'
-    queryset = Category.objects.filter(status=True)
+    queryset = Category.objects.filter(status=True).order_by('-updated_date', 'orderBy')
     serializer_class = CategorySerializer
 
 class BlogListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Blog.objects.filter(status=True).order_by('orderBy')
+    queryset = Blog.objects.filter(status=True).order_by('-updated_date', 'orderBy')
     serializer_class = BlogSerializer
 
     def perform_create(self, serializer):
@@ -29,7 +31,7 @@ class BlogListCreateAPIView(generics.ListCreateAPIView):
 
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'slug'
-    queryset = Blog.objects.filter(status=True).order_by('orderBy')
+    queryset = Blog.objects.filter(status=True).order_by('-updated_date', 'orderBy')
     serializer_class = BlogSerializer
 
     def perform_update(self, serializer):
@@ -51,7 +53,8 @@ class BlogListByCategoryAPIView(generics.ListAPIView):
     def get_queryset(self):
         category_id = self.kwargs['category_id']
         current_blog_id = self.kwargs['current_blog_id']
-        return Blog.objects.filter(category_id=category_id).exclude(id=current_blog_id)
+        return Blog.objects.filter(category_id=category_id).exclude(id=current_blog_id).order_by('-updated_date', 'orderBy')
+
 
 class CategoryListWithBlogsAPIView(generics.ListAPIView):
     queryset = Category.objects.filter(status=True, parent__isnull=False)
@@ -108,3 +111,17 @@ class ContactCreateAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+@api_view(['GET'])
+def increment_page_view(request,blog_id):
+
+    blog = get_object_or_404(Blog,id=blog_id)
+    blog.pageview += 1
+    blog.save()
+
+    return Response({
+        "success":True,
+        "pageview":blog.pageview
+    })

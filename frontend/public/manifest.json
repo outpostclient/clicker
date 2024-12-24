@@ -1,25 +1,39 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "UnfilterChoice",
+  "name": "Unfilter Choice - Your One-Stop Destination for Insightful Information",
+  "description": "Explore social issues, national and international news, blogs, lifestyle tips, global events, brands, services, and motivational quotes all in one place.",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
+      "src": "/static/media/blog_images/logo-light-bg_qXaMr3d.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "/static/media/blog_images/logo-light-bg_qXaMr3d.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#4b1175",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Categories",
+      "short_name": "Categories",
+      "description": "Explore different categories of topics.",
+      "url": "/all-list",
+      "icons": [{ "src": "/static/media/blog_images/logo-light-bg_qXaMr3d.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with us for queries.",
+      "url": "/contact",
+      "icons": [{ "src": "/static/media/blog_images/logo-light-bg_qXaMr3d.png", "sizes": "96x96", "type": "image/png" }]
+    }
+  ]
 }

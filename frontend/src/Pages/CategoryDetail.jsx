@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { DataContext } from "../Contexts/DataContext";
 import { Blog } from "../Components/Blog";
-import { BreadcrumbItems } from "../Components/Breadcrumb";
 import { Tags } from "../Components/Tags";
 import { WidgetCategories } from "../Components/WidgetCategories";
 import { HeadMetaContent } from "../Components/HeadMetaContent";
@@ -10,10 +9,10 @@ import { HeadMetaContent } from "../Components/HeadMetaContent";
 const CategoryDetail = () => {
   const { slug } = useParams();
   const { categories, blogs } = useContext(DataContext);
-  console.log("categories",categories);
+  console.log("categories", categories);
 
   const category = categories?.find((cat) => cat.slug === slug);
-  console.log("category on category details page",category);
+  console.log("category on category details page", category);
 
   const filterData = category
     ? blogs?.filter((blog) => blog.category === category.id)
@@ -33,15 +32,19 @@ const CategoryDetail = () => {
     ));
   };
 
-  const breadCrumbItems = [
-    { id: 1, title: "Home", slug: "/" },
-    { id: 2, title: category?.title || "Category", slug: slug }
-  ];
-
   return (
     <div className="container mt-5">
       <div className="row">
-        <BreadcrumbItems items={breadCrumbItems} />
+        <ul
+          className="breadcumb-menu d-flex gap-2 flex-wrap"
+          style={{ listStyle: "none", paddingLeft: "0rem" }}
+        >
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>/</li>
+          <li>{category?.title}</li>
+        </ul>
       </div>
       <HeadMetaContent singleBlog={category} />
       <div className="row gx-5">
@@ -63,8 +66,8 @@ const CategoryDetail = () => {
           </div>
         </div>
         <div className="col-12 col-lg-3">
-          <WidgetCategories {...{categories}}/>
-          <Tags {...{categories}}/>
+          <WidgetCategories {...{ categories }} />
+          <Tags {...{ categories }} />
         </div>
       </div>
     </div>

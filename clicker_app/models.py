@@ -4,18 +4,24 @@ from django.utils.safestring import mark_safe
 from ckeditor.fields import RichTextField
 from django.utils import timezone
 from django.conf import settings
+from taggit.managers import TaggableManager  # For tags
+from django.utils.timezone import now
 
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    title = models.CharField(max_length=255,blank=True)
-    parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
+    title = models.CharField(max_length=255, blank=True)
+    parent = models.ForeignKey(
+        'self', null=True, blank=True, related_name='children', on_delete=models.CASCADE
+    )
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
-    image_url = models.CharField(max_length=255,blank=True,null=True)
+    image_url = models.CharField(max_length=255, blank=True, null=True)
     description = RichTextField(blank=True, null=True)
     status = models.BooleanField(default=True)
-    date_created = models.DateTimeField(default=timezone.now)
+    orderBy = models.PositiveIntegerField(default=0)  # New field for ordering
+    updated_date = models.DateTimeField(auto_now=True)  # New field for last updated timestamp
+    date_created = models.DateTimeField(default=now)
 
     def __str__(self):
         return self.name
@@ -27,6 +33,7 @@ class Category(models.Model):
     
     class Meta:
         verbose_name_plural = "Categories"
+        ordering = ['orderBy', '-updated_date']  # Default ordering by orderBy and updated_date
 
 class Blog(models.Model):
     title = models.CharField(max_length=255)
@@ -41,6 +48,13 @@ class Blog(models.Model):
     status = models.BooleanField(default=True)
     author = models.CharField(max_length=255,blank=True,null=True)
     date_created = models.DateTimeField(default=timezone.now)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    # New Fields
+    likes = models.PositiveIntegerField(default=0)  # Total likes
+    dislikes = models.PositiveIntegerField(default=0)  # Total dislikes
+    pageview = models.PositiveIntegerField(default=0)  # Total dislikes
+    tags = TaggableManager()  # Tags for the blog
 
     def __str__(self):
         return self.title
