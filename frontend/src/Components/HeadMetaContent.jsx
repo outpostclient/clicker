@@ -10,6 +10,7 @@ export const HeadMetaContent = ({singleBlog}) => {
         <meta property="og:title" content={singleBlog?.title} />
         <meta property="og:description" content={singleBlog?.description} />
         <meta property="og:image" content={singleBlog?.image} />
+        
       </Helmet>
     </>
   );
