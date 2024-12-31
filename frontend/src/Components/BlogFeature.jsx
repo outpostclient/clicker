@@ -2,7 +2,6 @@ import React from "react";
 import DOMPurify from "dompurify";
 
 export const BlogFeature = ({ item }) => {
-  console.log(item);
   return (
     item?.length > 0 &&
     item.map((feature) => (

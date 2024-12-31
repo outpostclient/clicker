@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 
 export const AffiliateLinks = ({ item }) => {
-  console.log(item);
   return (
     item.length > 0 && (
       <div className="top5-prods">

@@ -208,7 +208,6 @@ a {
 }
 
 .nav-bg, .home-bg {
-  background: url("../../media/blog_images/main-banner-unfilter.jpg");
   background-size: cover !important;
 }
 

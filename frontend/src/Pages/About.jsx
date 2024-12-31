@@ -6,8 +6,6 @@ import ShimmerLoader from "../Components/ShimmerLoader";
 const About = () => {
   const about_Slug = "about-us";
   const { record, error } = useFetchSitePageRecords(about_Slug);
-  console.log(record);
-
   if (error) return <div>{error}</div>;
 
   if (!record) {

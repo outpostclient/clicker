@@ -7,8 +7,7 @@ import ShimmerLoader from "../Components/ShimmerLoader";
 const TermsAndConditions = () => {
   const terms_Slug = "termsandcondition";
   const { record, error } = useFetchSitePageRecords(terms_Slug);
-  console.log(record);
-
+  
   if (error) return <div>{error}</div>;
 
   if (!record) {

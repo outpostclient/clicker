@@ -1,29 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext,useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "../Contexts/DataContext";
 import { TabsComponent } from "../Components/TabsComponent";
 import DOMPurify from "dompurify";
 import { Accordion, Row, Col, Badge, Image, Card } from "react-bootstrap";
 import ShimmerLoader from "../Components/ShimmerLoader";
+import axios from "axios";
+import { HeadMetaContent } from "../Components/HeadMetaContent";
 
 const Home = () => {
+  const [navbarData, setNavbarData] = useState(null);
   const { categorysWithBlogs, loading } = useContext(DataContext);
   const { parentCategorysWithBlogs } = useContext(DataContext);
-  console.log("categorysWithBlogs", categorysWithBlogs);
-
-  const imageUrl = process.env.REACT_APP_IMAGE_URL;
-  console.log("imageUrl", imageUrl);
 
   const formatDate = (isoDateStr) => {
     const date = new Date(isoDateStr);
     const options = { year: "numeric", month: "short" };
     return date.toLocaleDateString("en-US", options).toUpperCase();
   };
+
+  useEffect(() => {
+    const fetchNavbarData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/sitepage/header/`);
+        setNavbarData(response.data);
+      } catch (error) {
+        console.error("Error fetching navbar data", error);
+      }
+    };
+
+    fetchNavbarData();
+  }, []);
+
   if (loading) return <ShimmerLoader />;
   return (
     <>
       <div className="">
-        <div className="mb-3 home-bg">
+        <HeadMetaContent preloadImage={navbarData?.background_image} />
+        <div className="mb-3 home-bg" style={{background:`url(${navbarData?.background_image})`}}>
           <TabsComponent items={parentCategorysWithBlogs} />
         </div>
       </div>

@@ -2,8 +2,6 @@ import React from "react";
 import { Breadcrumb } from "react-bootstrap";
 
 export const BreadcrumbItems = ({ items }) => {
-
-  console.log("breadcrumb item",items);
   return (
     <Breadcrumb>
       {

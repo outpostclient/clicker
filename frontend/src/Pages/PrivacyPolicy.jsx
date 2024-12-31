@@ -7,7 +7,6 @@ import ShimmerLoader from "../Components/ShimmerLoader";
 const PrivacyPolicy = () => {
   const policy_Slug = "privacyandpolicy";
   const { record, error } = useFetchSitePageRecords(policy_Slug);
-  console.log(record);
 
   if (error) return <div>{error}</div>;
 

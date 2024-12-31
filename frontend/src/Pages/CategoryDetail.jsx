@@ -10,10 +10,8 @@ import ShimmerLoader from "../Components/ShimmerLoader";
 const CategoryDetail = () => {
   const { slug } = useParams();
   const { categories,loading, blogs } = useContext(DataContext);
-  console.log("categories", categories);
 
   const category = categories?.find((cat) => cat.slug === slug);
-  console.log("category on category details page", category);
 
   const filterData = category
     ? blogs?.filter((blog) => blog.category === category.id)

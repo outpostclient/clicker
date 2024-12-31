@@ -7,7 +7,6 @@ const Navbar = () => {
   const [navbarData, setNavbarData] = useState(null);
   
   useEffect(() => {
-    // Only fetch navbar data once, do not depend on `slug`
     const fetchNavbarData = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/sitepage/header/`);
@@ -18,11 +17,11 @@ const Navbar = () => {
     };
 
     fetchNavbarData();
-  }, []); // Empty dependency array to ensure this runs once
+  }, []);
 
   if (!navbarData) return <HeaderNavbarShimmer/>;
   return (
-    <nav className="navbar navbar-expand-lg nav-bg">
+    <nav className="navbar navbar-expand-lg nav-bg" style={{background:`url(${navbarData?.background_image})`}}>
       <div className="container">
         <Link className="navbar-brand fw-bold text-danger" to="/">
           <img style={{width:"50px"}} alt="" src={navbarData?.image} />

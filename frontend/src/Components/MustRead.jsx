@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const MustRead = ({ item }) => {
-  // console.log("Must Read Item", item);
   return (
     <div key={item.id} className="row">
       <div className="col-12">

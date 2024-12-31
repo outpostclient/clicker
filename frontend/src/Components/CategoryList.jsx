@@ -6,7 +6,6 @@ export const CategoryList = ({ categories }) => {
   const { slug } = useParams();
 
   const memoizedCategories = useMemo(() => categories, [categories]);
-  // console.log(categories);
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
       {memoizedCategories.map((cat) => (

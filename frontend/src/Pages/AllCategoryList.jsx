@@ -10,8 +10,6 @@ const AllCategoryList = () => {
   const memoizedCategories = useMemo(() => {
     return categories.filter((category) => category.parent !== null);
   }, [categories]);
-
-  console.log(memoizedCategories);
   if (loading) {
     return <ShimmerLoader />;
   }
