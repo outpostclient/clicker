@@ -1,9 +1,10 @@
 import React, { useContext, useMemo } from "react";
 import { CategoryList } from "../Components/CategoryList";
 import { DataContext } from "../Contexts/DataContext";
+import ShimmerLoader from "../Components/ShimmerLoader";
 
 const AllCategoryList = () => {
-  const { categories } = useContext(DataContext);
+  const { categories, loading } = useContext(DataContext);
 
   // Use useMemo to memoize the categories value to avoid unnecessary re-renders
   const memoizedCategories = useMemo(() => {
@@ -11,6 +12,9 @@ const AllCategoryList = () => {
   }, [categories]);
 
   console.log(memoizedCategories);
+  if (loading) {
+    return <ShimmerLoader />;
+  }
   return (
     <div>
       <>

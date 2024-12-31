@@ -1,6 +1,7 @@
 import axios from "axios";
 import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
+import HeaderNavbarShimmer from "./HeaderNavbarShimmer";
 
 const Navbar = () => {
   const [navbarData, setNavbarData] = useState(null);
@@ -19,7 +20,7 @@ const Navbar = () => {
     fetchNavbarData();
   }, []); // Empty dependency array to ensure this runs once
 
-  if (!navbarData) return <div>Loading Navbar...</div>;
+  if (!navbarData) return <HeaderNavbarShimmer/>;
   return (
     <nav className="navbar navbar-expand-lg nav-bg">
       <div className="container">

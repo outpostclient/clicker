@@ -2,6 +2,7 @@ import React from "react";
 import DOMPurify from "dompurify";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
+import ShimmerLoader from "../Components/ShimmerLoader";
 
 const PrivacyPolicy = () => {
   const policy_Slug = "privacyandpolicy";
@@ -11,7 +12,7 @@ const PrivacyPolicy = () => {
   if (error) return <div>{error}</div>;
 
   if (!record) {
-    return <div>Loading...</div>;
+    return <ShimmerLoader/>;
   }
   return (
     <Container className="my-5">

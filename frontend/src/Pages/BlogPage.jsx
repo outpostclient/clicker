@@ -7,10 +7,12 @@ import DOMPurify from "dompurify";
 import { MustRead } from "../Components/MustRead";
 import { HeadMetaContent } from "../Components/HeadMetaContent";
 import { formatDate } from "../Utils/DateFormatter";
+import ShimmerLoader from "../Components/ShimmerLoader";
 
 const BlogPage = () => {
   const { slug, blogslug } = useParams();
   const {
+    loading,
     singleBlog,
     fetchSingleBlogData,
     fetchBlogListExcludeCurrent,
@@ -30,7 +32,7 @@ const BlogPage = () => {
     }
   }, [singleBlog]);
 
-  if (!singleBlog) return null;
+  if (loading) return <ShimmerLoader/>;
 
   return (
     <div className="container my-5">
@@ -65,7 +67,7 @@ const BlogPage = () => {
             />
             <div className="d-flex align-items-center justify-content-between mb-3">
               <p className="text-muted mb-0">
-                {singleBlog.author} | {formatDate(singleBlog.date_created)}
+                Admin | {formatDate(singleBlog.date_created)}
               </p>
               <span className="blog-info">
                 <i className="fas fa-eye"></i>

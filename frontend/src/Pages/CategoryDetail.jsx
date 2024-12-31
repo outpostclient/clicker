@@ -5,10 +5,11 @@ import { Blog } from "../Components/Blog";
 import { Tags } from "../Components/Tags";
 import { WidgetCategories } from "../Components/WidgetCategories";
 import { HeadMetaContent } from "../Components/HeadMetaContent";
+import ShimmerLoader from "../Components/ShimmerLoader";
 
 const CategoryDetail = () => {
   const { slug } = useParams();
-  const { categories, blogs } = useContext(DataContext);
+  const { categories,loading, blogs } = useContext(DataContext);
   console.log("categories", categories);
 
   const category = categories?.find((cat) => cat.slug === slug);
@@ -31,6 +32,7 @@ const CategoryDetail = () => {
       </React.Fragment>
     ));
   };
+  if (loading) return <ShimmerLoader/>;
 
   return (
     <div className="container mt-5">

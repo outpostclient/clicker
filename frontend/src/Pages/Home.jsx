@@ -4,9 +4,10 @@ import { DataContext } from "../Contexts/DataContext";
 import { TabsComponent } from "../Components/TabsComponent";
 import DOMPurify from "dompurify";
 import { Accordion, Row, Col, Badge, Image, Card } from "react-bootstrap";
+import ShimmerLoader from "../Components/ShimmerLoader";
 
 const Home = () => {
-  const { categorysWithBlogs } = useContext(DataContext);
+  const { categorysWithBlogs, loading } = useContext(DataContext);
   const { parentCategorysWithBlogs } = useContext(DataContext);
   console.log("categorysWithBlogs", categorysWithBlogs);
 
@@ -18,6 +19,7 @@ const Home = () => {
     const options = { year: "numeric", month: "short" };
     return date.toLocaleDateString("en-US", options).toUpperCase();
   };
+  if (loading) return <ShimmerLoader />;
   return (
     <>
       <div className="">

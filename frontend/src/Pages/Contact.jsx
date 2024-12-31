@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
+import ShimmerLoader from "../Components/ShimmerLoader";
 
 
 const Contact = () => {
@@ -20,7 +21,7 @@ const Contact = () => {
   const { record } = useFetchSitePageRecords(contact_Slug);
 
   if (!record) {
-    return <div>Loading...</div>; // Show a loading message while fetching data
+    return <ShimmerLoader/>; // Show a loading message while fetching data
   }
 
   const handleChange = (e) => {

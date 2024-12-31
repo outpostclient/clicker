@@ -19,13 +19,24 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path,include,re_path
+from django.contrib.sitemaps.views import sitemap
+from clicker_app.sitemaps import CategorySitemap, BlogSitemap, StaticViewSitemap, HomeViewSitemap
+from django.views.decorators.cache import cache_page
+
+sitemaps = {
+    'homepage': HomeViewSitemap,
+    'static': StaticViewSitemap,
+    'categories': CategorySitemap,
+    'blogs': BlogSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('clicker_app.urls')),
+    path('sitemap.xml', cache_page(86400)(sitemap), {'sitemaps': sitemaps}, name='sitemap'),
     #path('', TemplateView.as_view(template_name="index.html")),  # Serve React app
     # re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),  # Serve React app
-    re_path(r'^(?!api/).*$', TemplateView.as_view(template_name='index.html')),  # Serve React app
+    re_path(r'^(?!api/).*$', TemplateView.as_view(template_name='index.html'), name='home'),  # Serve React app
 ]
 
 

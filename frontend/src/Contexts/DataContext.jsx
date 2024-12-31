@@ -10,6 +10,7 @@ import axios from "axios";
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
+  const [loading,setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [singleBlog, setSingleBlog] = useState([]);
@@ -33,8 +34,10 @@ export const DataProvider = ({ children }) => {
           `${process.env.REACT_APP_API_URL}/categories/`
         );
         setCategories(response.data);
+        setLoading(false);
       } catch (error) {
         console.log("error fetching categories", error);
+        setLoading(false);
       }
     };
     fetchData();
@@ -47,8 +50,10 @@ export const DataProvider = ({ children }) => {
           `${process.env.REACT_APP_API_URL}/blogs/`
         );
         setBlogs(response.data);
+        setLoading(false);
       } catch (error) {
         console.log("error fetching categories", error);
+        setLoading(false);
       }
     };
     fetchBlogsData();
@@ -60,8 +65,10 @@ export const DataProvider = ({ children }) => {
         `${process.env.REACT_APP_API_URL}/blogs/${slug}`
       );
       setSingleBlog(response.data);
+      setLoading(false);
     } catch (error) {
       console.log("error fetching categories", error);
+      setLoading(false);
     }
   };
 
@@ -71,8 +78,10 @@ export const DataProvider = ({ children }) => {
         `${process.env.REACT_APP_API_URL}/sitepage/${sitepage_slug}/`
       );
       setFetchSitePageRecordUsingSlug(response.data);
+      setLoading(false);
     } catch (error) {
       console.log("error in fetching the fetchSitePageRecord", error);
+      setLoading(false);
     }
   }, []);
 
@@ -83,8 +92,10 @@ export const DataProvider = ({ children }) => {
           `${process.env.REACT_APP_API_URL}/blogs/category/${category_id}/exclude/${current_blog_id}/`
         );
         setblogListExcludeCurrent(response.data);
+        setLoading(false);
       } catch (error) {
         console.log("error fetching categories", error);
+        setLoading(false);
       }
     },
     []
@@ -97,8 +108,10 @@ export const DataProvider = ({ children }) => {
           `${process.env.REACT_APP_API_URL}/categories-with-blogs/`
         );
         setCategorysWithBlogs(response.data);
+        setLoading(false);
       } catch (error) {
         console.log("Error in fetching the Category With Blogs", error);
+        setLoading(false);
       }
     };
     fetchCategorysWithBlogs();
@@ -111,8 +124,10 @@ export const DataProvider = ({ children }) => {
           `${process.env.REACT_APP_API_URL}/parent-categories/`
         );
         setParentCategorysWithBlogs(response.data);
+        setLoading(false);
       } catch (error) {
         console.log("Error in fetching the Category With Blogs", error);
+        setLoading(false);
       }
     };
     fetchParentCategorysWithBlogs();
@@ -125,11 +140,13 @@ export const DataProvider = ({ children }) => {
           `${process.env.REACT_APP_API_URL}/category-names/`
         );
         setFetchCategoryForCategoryFeatureNotNull(response.data);
+        setLoading(false);
       } catch (error) {
         console.log(
           "Error in Fetching the setFetchCategoryForCategoryFeatureNotNull",
           error
         );
+        setLoading(false);
       }
     };
     fetchCategoryForCategoryFeatureNotNull();
@@ -137,16 +154,19 @@ export const DataProvider = ({ children }) => {
 
   const blogPageView = async(blogId) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/blogs/${blogId}/view/`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/blogs/${blogId}/view/`);
       console.log("reposne of page view",response.data);
       setpageViewState(response.data.pageview);
+      setLoading(false);
     } catch (error) {
       console.error(`Error toggling like for blog ${blogId}:`, error);
+      setLoading(false);
     }
   }
 
   const value = useMemo(
     () => ({
+      loading,
       categories,
       blogs,
       singleBlog,
@@ -162,6 +182,7 @@ export const DataProvider = ({ children }) => {
       fetchSitePageRecord,
     }),
     [
+      loading,
       categories,
       blogs,
       singleBlog,

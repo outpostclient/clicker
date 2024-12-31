@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import DOMPurify from "dompurify";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
+import ShimmerLoader from "../Components/ShimmerLoader";
 
 const About = () => {
   const about_Slug = "about-us";
@@ -10,7 +11,7 @@ const About = () => {
   if (error) return <div>{error}</div>;
 
   if (!record) {
-    return <div>Loading...</div>; // Show a loading message while fetching data
+    return <ShimmerLoader/>; // Show a loading message while fetching data
   }
   return (
     <div className="container pt-5">

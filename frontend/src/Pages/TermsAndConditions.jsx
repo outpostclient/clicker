@@ -2,6 +2,7 @@ import React from "react";
 import DOMPurify from "dompurify";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
+import ShimmerLoader from "../Components/ShimmerLoader";
 
 const TermsAndConditions = () => {
   const terms_Slug = "termsandcondition";
@@ -11,7 +12,7 @@ const TermsAndConditions = () => {
   if (error) return <div>{error}</div>;
 
   if (!record) {
-    return <div>Loading...</div>; // Show a loading message while fetching data
+    return <ShimmerLoader/>; // Show a loading message while fetching data
   }
   return (
     <Container className="my-5">
