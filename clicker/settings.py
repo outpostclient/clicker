@@ -16,8 +16,8 @@ SECRET_KEY = 'django-insecure-ax2a7=oj+yuifrr%p+)pba0brqjnb3-sne+1aeig!9t*)a*2dj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] #development
-# ALLOWED_HOSTS = ['145.223.21.48','unfilterchoice.com','http://unfilterchoice.com/','www.unfilterchoice.com','https://www.unfilterchoice.com/'] #production
+# ALLOWED_HOSTS = ['*'] #development
+ALLOWED_HOSTS = ['145.223.21.48','unfilterchoice.com','http://unfilterchoice.com/','www.unfilterchoice.com','https://www.unfilterchoice.com/'] #production
 
 # Application definition
 
@@ -49,24 +49,24 @@ MIDDLEWARE = [
 ]
 
 # developement
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:3001",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+#     "http://localhost:3001",
+#     "http://127.0.0.1:3001",
+# ]
 
 # development
 
 # production 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://145.223.21.48",     # IP with HTTP
-#     "https://145.223.21.48",    # IP with HTTPS
-#     "http://unfilterchoice.com",    # Main domain with HTTP
-#     "https://unfilterchoice.com",   # Main domain with HTTPS
-#     "http://www.unfilterchoice.com",   # www subdomain with HTTP
-#     "https://www.unfilterchoice.com",  # www subdomain with HTTPS
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "http://145.223.21.48",     # IP with HTTP
+    "https://145.223.21.48",    # IP with HTTPS
+    "http://unfilterchoice.com",    # Main domain with HTTP
+    "https://unfilterchoice.com",   # Main domain with HTTPS
+    "http://www.unfilterchoice.com",   # www subdomain with HTTP
+    "https://www.unfilterchoice.com",  # www subdomain with HTTPS
+]
 
 # production
 
@@ -100,21 +100,21 @@ TEMPLATES = [
 ]
 
 # development
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
+# ]
 
 WSGI_APPLICATION = 'clicker.wsgi.application'
 
@@ -122,27 +122,12 @@ WSGI_APPLICATION = 'clicker.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 #development
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'clicker',
-        'USER': 'root',
-        'PASSWORD': 'Admin1234',
-        'HOST': 'localhost',  # Set to the MySQL server host (e.g., 'localhost' or '127.0.0.1')
-        'PORT': '3306',      # Set to the MySQL server port (default is 3306)
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-    }
-}
-
-#production
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'db_clicker',
-#         'USER': 'clicker',
-#         'PASSWORD': 'R1a1j1a1t1#rajat',
+#         'NAME': 'clicker',
+#         'USER': 'root',
+#         'PASSWORD': 'Admin1234',
 #         'HOST': 'localhost',  # Set to the MySQL server host (e.g., 'localhost' or '127.0.0.1')
 #         'PORT': '3306',      # Set to the MySQL server port (default is 3306)
 #         'OPTIONS': {
@@ -150,6 +135,21 @@ DATABASES = {
 #         },
 #     }
 # }
+
+#production
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_clicker',
+        'USER': 'clicker',
+        'PASSWORD': 'R1a1j1a1t1#rajat',
+        'HOST': 'localhost',  # Set to the MySQL server host (e.g., 'localhost' or '127.0.0.1')
+        'PORT': '3306',      # Set to the MySQL server port (default is 3306)
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -185,23 +185,23 @@ USE_TZ = True
 
 # ------------development -------- #
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # ------------development -------- #
 
 
 # -------production -------------#
 
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'staticfiles'),  # Changed to staticfiles
-# ]
-# #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATIC_ROOT = os.path.join('/var/www/clicker', 'static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles'),  # Changed to staticfiles
+]
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join('/var/www/clicker', 'static')
 
 # ---------Production -----------#
 
