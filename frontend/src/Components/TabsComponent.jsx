@@ -24,7 +24,7 @@ export const TabsComponent = ({ items }) => {
             <Col sm={12}>
               <Nav
                 variant="pills"
-                className="justify-content-center tabs-parent "
+                className="justify-content-center tabs-parent"
               >
                 {items?.map((item,index) => (
                   <Nav.Item key={index}>

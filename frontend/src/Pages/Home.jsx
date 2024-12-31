@@ -9,7 +9,7 @@ import axios from "axios";
 import { HeadMetaContent } from "../Components/HeadMetaContent";
 
 const Home = () => {
-  const [navbarData, setNavbarData] = useState(null);
+  const [homeData, setHomeData] = useState(null);
   const { categorysWithBlogs, loading } = useContext(DataContext);
   const { parentCategorysWithBlogs } = useContext(DataContext);
 
@@ -20,24 +20,24 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const fetchNavbarData = async () => {
+    const fetchHomeData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/sitepage/header/`);
-        setNavbarData(response.data);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/sitepage/home/`);
+        setHomeData(response.data);
       } catch (error) {
         console.error("Error fetching navbar data", error);
       }
     };
 
-    fetchNavbarData();
+    fetchHomeData();
   }, []);
 
   if (loading) return <ShimmerLoader />;
   return (
     <>
       <div className="">
-        <HeadMetaContent preloadImage={navbarData?.background_image} />
-        <div className="mb-3 home-bg" style={{background:`url(${navbarData?.background_image})`}}>
+        <HeadMetaContent preloadImage={homeData?.background_image} />
+        <div className="mb-3 home-bg" style={{background:`url(${homeData?.background_image})`}}>
           <TabsComponent items={parentCategorysWithBlogs} />
         </div>
       </div>
@@ -125,7 +125,7 @@ const Home = () => {
                         <div className="">
                           <Row className="align-items-center">
                             <Col xs={12} lg={6}>
-                              {category.image ? (
+                              {blog.image ? (
                                 <Image
                                   loading="lazy"
                                   className="rounded-2"

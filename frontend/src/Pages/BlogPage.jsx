@@ -56,7 +56,6 @@ const BlogPage = () => {
             <span className="badge text-bg-primary">{singleBlog?.category_name}</span>
             <h1 className="fs-4 fw-bold mb-3 mt-3">{singleBlog.title}</h1>
             <img
-              loading="lazy"
               className="img-fluid rounded mb-4"
               src={
                 singleBlog.image || 
