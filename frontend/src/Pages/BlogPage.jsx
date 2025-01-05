@@ -34,6 +34,8 @@ const BlogPage = () => {
 
   if (loading) return <ShimmerLoader/>;
 
+  const blogUrl = `${singleBlog?.category_slug}/${singleBlog?.slug}`;
+
   return (
     <div className="container my-5">
       <ul
@@ -47,7 +49,7 @@ const BlogPage = () => {
         <li>{singleBlog?.title}</li>
       </ul>
 
-      <HeadMetaContent singleBlog={singleBlog} />
+      <HeadMetaContent singleBlog={singleBlog} canonialUrl={blogUrl} />
 
       <div className="row">
         {/* Main Content */}
@@ -62,7 +64,7 @@ const BlogPage = () => {
                 singleBlog.image_url || 
                 "https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
               }
-              alt={singleBlog.slug || "Placeholder"}
+              alt={singleBlog.alt_text || "Placeholder"}
             />
             <div className="d-flex align-items-center justify-content-between mb-3">
               <p className="text-muted mb-0">

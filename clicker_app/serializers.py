@@ -92,7 +92,7 @@ class SitePageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SitePage
-        fields = ['id', 'title', 'slug', 'subtitle', 'description', 'image', 'background_image', 'status', 'date_created']
+        fields = ['id', 'title', 'slug', 'subtitle', 'description', 'image', 'background_image', 'status', 'date_created','tags']
 
     def get_image(self, obj):
         request = self.context.get('request', None)

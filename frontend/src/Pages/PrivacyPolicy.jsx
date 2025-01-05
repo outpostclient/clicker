@@ -3,6 +3,7 @@ import DOMPurify from "dompurify";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
 import ShimmerLoader from "../Components/ShimmerLoader";
+import { HeadMetaContent } from "../Components/HeadMetaContent";
 
 const PrivacyPolicy = () => {
   const policy_Slug = "privacyandpolicy";
@@ -15,6 +16,7 @@ const PrivacyPolicy = () => {
   }
   return (
     <Container className="my-5">
+      <HeadMetaContent singleBlog={record} canonialUrl={record?.slug}/>
       <Row>
         <Col>
           <Card className="shadow-sm">

@@ -6,14 +6,17 @@ from django.utils import timezone
 from django.conf import settings
 from taggit.managers import TaggableManager  # For tags
 from django.utils.timezone import now
+import re
 
+def generate_alt_text(title):
+        words = re.findall(r'\b\w+\b', title)
+        return ' '.join(words[:4]) if len(words) > 4 else ' '.join(words)
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
     title = models.CharField(max_length=255, blank=True)
-    parent = models.ForeignKey(
-        'self', null=True, blank=True, related_name='children', on_delete=models.CASCADE
-    )
+    subtitle = models.CharField(max_length=500, blank=True)
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
     image_url = models.CharField(max_length=255, blank=True, null=True)
@@ -71,6 +74,9 @@ class Blog(models.Model):
         if self.image:
             return self.image.url
         return None
+    
+    def alt_text(self):
+        return generate_alt_text(self.title)
 
 
 class CategoryFeature(models.Model):
@@ -134,13 +140,14 @@ class AffiliateLink(models.Model):
     
 class SitePage(models.Model):
     title = models.CharField(max_length=255, unique=False, help_text="Main title of the page")
-    subtitle = models.CharField(max_length=255, blank=True, null=True, help_text="Optional subtitle for the page")
+    subtitle = models.CharField(max_length=500, blank=True, null=True, help_text="Optional subtitle for the page")
     slug = models.SlugField(max_length=255, unique=True, blank=True, help_text="URL-friendly identifier for the page")
     description = RichTextField(blank=True, null=True, help_text="Detailed description or content of the page")
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True, help_text="Main image for the page")
-    background_image = models.ImageField(upload_to='background_images/', blank=True, null=True, help_text="Background image for the page")
+    background_image = models.ImageField(upload_to='blog_images/', blank=True, null=True, help_text="Background image for the page")
     status = models.BooleanField(default=True, help_text="Publish status of the page")
     date_created = models.DateTimeField(default=timezone.now, help_text="Date and time when the page was created")
+    tags = TaggableManager()  # Tags for the blog
 
     class Meta:
         verbose_name = "Site Page"

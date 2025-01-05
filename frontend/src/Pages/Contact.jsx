@@ -4,6 +4,7 @@ import axios from "axios";
 import DOMPurify from "dompurify";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
 import ShimmerLoader from "../Components/ShimmerLoader";
+import { HeadMetaContent } from "../Components/HeadMetaContent";
 
 
 const Contact = () => {
@@ -53,6 +54,7 @@ const Contact = () => {
 
   return (
     <Container className="py-5">
+      <HeadMetaContent singleBlog={record} canonialUrl={record?.slug}/>
       <Row className="mb-5 text-center">
         <Col>
           <h1>Contact Us</h1>

@@ -10,6 +10,7 @@ import { HeadMetaContent } from "../Components/HeadMetaContent";
 
 const Home = () => {
   const [homeData, setHomeData] = useState(null);
+  const [homeMetaData, setHomeMetaData] = useState(null);
   const { categorysWithBlogs, loading } = useContext(DataContext);
   const { parentCategorysWithBlogs } = useContext(DataContext);
 
@@ -25,18 +26,31 @@ const Home = () => {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/sitepage/home/`);
         setHomeData(response.data);
       } catch (error) {
-        console.error("Error fetching navbar data", error);
+        console.error("Error fetching fetchHomeData", error);
       }
     };
 
     fetchHomeData();
   }, []);
 
+  useEffect(() => {
+    const fetchHomeMetaData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/sitepage/meta-data/`);
+        setHomeMetaData(response.data);
+      } catch (error) {
+        console.error("Error fetching fetchHomeMetaData", error);
+      }
+    };
+
+    fetchHomeMetaData();
+  }, []);
+
   if (loading) return <ShimmerLoader />;
   return (
     <>
       <div className="">
-        <HeadMetaContent preloadImage={homeData?.background_image} />
+        <HeadMetaContent singleBlog={homeMetaData} preloadImage={homeData?.background_image} />
         <div className="mb-3 home-bg" style={{background:`url(${homeData?.background_image})`}}>
           <TabsComponent items={parentCategorysWithBlogs} />
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import DOMPurify from "dompurify";
 import useFetchSitePageRecords from "../CustomHooks/useFetchSitePageRecords";
 import ShimmerLoader from "../Components/ShimmerLoader";
+import { HeadMetaContent } from "../Components/HeadMetaContent";
 
 const About = () => {
   const about_Slug = "about-us";
@@ -12,6 +13,8 @@ const About = () => {
     return <ShimmerLoader/>; // Show a loading message while fetching data
   }
   return (
+    <>
+    <HeadMetaContent singleBlog={record} canonialUrl={record?.slug}/>
     <div className="container pt-5">
       <div className="row">
         <div className="col-12 text-center">
@@ -50,6 +53,8 @@ const About = () => {
         </div>
       </div>
     </div>
+    </>
+    
   );
 };
 

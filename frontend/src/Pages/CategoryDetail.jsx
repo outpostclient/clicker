@@ -13,6 +13,8 @@ const CategoryDetail = () => {
 
   const category = categories?.find((cat) => cat.slug === slug);
 
+  console.log("category details", category);
+
   const filterData = category
     ? blogs?.filter((blog) => blog.category === category.id)
     : [];
@@ -46,7 +48,7 @@ const CategoryDetail = () => {
           <li>{category?.title}</li>
         </ul>
       </div>
-      <HeadMetaContent singleBlog={category} />
+      <HeadMetaContent singleBlog={category} canonialUrl={category.slug} />
       <div className="row gx-5">
         <div className="col-12 col-lg-9">
           <div className="row">
