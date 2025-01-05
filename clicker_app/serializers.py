@@ -89,6 +89,7 @@ class BlogSerializer(serializers.ModelSerializer):
 class SitePageSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
     background_image = serializers.SerializerMethodField()
+    tags = serializers.SerializerMethodField()  # Add this line to serialize tags
 
     class Meta:
         model = SitePage
@@ -109,6 +110,10 @@ class SitePageSerializer(serializers.ModelSerializer):
         if obj.background_image:
             return obj.background_image.url  # Fallback to relative URL if no request
         return None
+    
+    def get_tags(self, obj):
+        # Convert the tags to a list of strings
+        return [tag.name for tag in obj.tags.all()]
     
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
