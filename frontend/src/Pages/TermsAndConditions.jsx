@@ -12,7 +12,7 @@ const TermsAndConditions = () => {
   if (error) return <div>{error}</div>;
 
   if (!record) {
-    return <ShimmerLoader/>; // Show a loading message while fetching data
+    return null; // Show a loading message while fetching data
   }
   return (
     <Container className="my-5">

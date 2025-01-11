@@ -22,7 +22,7 @@ const Contact = () => {
   const { record } = useFetchSitePageRecords(contact_Slug);
 
   if (!record) {
-    return <ShimmerLoader/>; // Show a loading message while fetching data
+    return null; // Show a loading message while fetching data
   }
 
   const handleChange = (e) => {

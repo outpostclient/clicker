@@ -12,9 +12,10 @@ export const TabsComponent = ({ items }) => {
   return (
     <Container>
       <div className="py-5">
-        <h1 className="text-center my-4 fw-bold">
+        <h1 className="text-center my-4 fw-bold text-light">
         Simplify Decisions with Unbiased Reviews <br />and Comprehensive, Transparent Guides!
         </h1>
+        
         <Tab.Container
           id="left-tabs-example"
           activeKey={activeKey}
@@ -29,7 +30,7 @@ export const TabsComponent = ({ items }) => {
                 {items?.map((item,index) => (
                   <Nav.Item key={index}>
                     <Nav.Link eventKey={item.slug} className="tab-link">
-                      <div className="tab-icon"><i className={`${item.image_url}`}></i></div>
+                      <div className="tab-icon"><i className={item.image_url}></i></div>
                       <div>{item.name}</div>
                     </Nav.Link>
                   </Nav.Item>

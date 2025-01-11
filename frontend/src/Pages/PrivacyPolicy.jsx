@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
   if (error) return <div>{error}</div>;
 
   if (!record) {
-    return <ShimmerLoader/>;
+    return null;
   }
   return (
     <Container className="my-5">

@@ -54,6 +54,10 @@ export const HeadMetaContent = ({ singleBlog, preloadImage, canonialUrl }) => {
 
       {/* Preloading Image */}
       {preloadImage && <link rel="preload" href={preloadImage} as="image" />}
+
+      <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&amp;family=Josefin+Sans:ital,wght@0,100..700;1,100..700&amp;display=swap" rel="preload" as="font" crossOrigin=""/>
+
+      
     </Helmet>
   );
 };

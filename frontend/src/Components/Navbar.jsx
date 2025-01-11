@@ -19,12 +19,12 @@ const Navbar = () => {
     fetchNavbarData();
   }, []);
 
-  if (!navbarData) return <HeaderNavbarShimmer/>;
+  if (!navbarData) return;
   return (
-    <nav className="navbar navbar-expand-lg nav-bg" style={{background:`url(${navbarData?.background_image})`}}>
+    <nav className="navbar navbar-expand-lg bg-primary">
       <div className="container">
         <Link className="navbar-brand fw-bold text-danger" to="/">
-          <img style={{width:"50px"}} alt="" src={navbarData?.image} />
+          <img style={{width:"50px"}} width={50} height={50} alt="Unfilter Choice" src={navbarData?.image} />
         </Link>
         <button
           className="navbar-toggler"
@@ -44,22 +44,22 @@ const Navbar = () => {
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link className="nav-link active text-light" aria-current="page" to="/">
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">
+              <Link className="nav-link text-light" to="/about">
                 About
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/all-list">
+              <Link className="nav-link text-light" to="/all-list">
                 Category
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contact">
+              <Link className="nav-link text-light" to="/contact">
                 Contact
               </Link>
             </li>

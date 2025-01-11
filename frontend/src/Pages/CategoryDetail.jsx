@@ -32,7 +32,7 @@ const CategoryDetail = () => {
       </React.Fragment>
     ));
   };
-  if (loading) return <ShimmerLoader/>;
+  if (!categories) return null;
 
   return (
     <div className="container mt-5">

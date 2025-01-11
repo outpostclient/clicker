@@ -10,7 +10,7 @@ const About = () => {
   if (error) return <div>{error}</div>;
 
   if (!record) {
-    return <ShimmerLoader/>; // Show a loading message while fetching data
+    return null; // Show a loading message while fetching data
   }
   return (
     <>
@@ -25,18 +25,21 @@ const About = () => {
             {record.image ? (
               <img
                 className="rounded-5 mt-3"
+                width={856} height={374}
                 src={record.image}
                 alt={record.slug}
               />
             ) : record.image_url ? (
               <img
                 className="rounded-5 mt-3"
+                width={856} height={374}
                 src={record.image_url}
                 alt={record.title}
               />
             ) : (
               <img
                 className="rounded-5 mt-3"
+                width={856} height={374}
                 src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
                 alt="Placeholder"
               />

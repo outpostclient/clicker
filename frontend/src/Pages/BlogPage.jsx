@@ -32,9 +32,11 @@ const BlogPage = () => {
     }
   }, [singleBlog]);
 
-  if (loading) return <ShimmerLoader/>;
-
   const blogUrl = `${singleBlog?.category_slug}/${singleBlog?.slug}`;
+
+
+  if (!singleBlog) return null;
+
 
   return (
     <div className="container my-5">
@@ -65,6 +67,7 @@ const BlogPage = () => {
                 "https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
               }
               alt={singleBlog.alt_text || "Placeholder"}
+              width={1344} height={768}
             />
             <div className="d-flex align-items-center justify-content-between mb-3">
               <p className="text-muted mb-0">

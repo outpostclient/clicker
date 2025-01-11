@@ -36,7 +36,7 @@ urlpatterns = [
     path('sitemap.xml', cache_page(86400)(sitemap), {'sitemaps': sitemaps}, name='sitemap'),
     #path('', TemplateView.as_view(template_name="index.html")),  # Serve React app
     # re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),  # Serve React app
-    re_path(r'^(?!api/).*$', TemplateView.as_view(template_name='index.html'), name='home'),  # Serve React app
+    # re_path(r'^(?!api/).*$', TemplateView.as_view(template_name='index.html'), name='home'),  # Serve React app
 ]
 
 

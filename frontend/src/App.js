@@ -24,7 +24,7 @@ function App() {
     <HelmetProvider>
       <DataProvider>
         <Router>
-          <Suspense fallback={<ShimmerLoader/>}>
+          <Suspense fallback={<div></div>}>
             <Navbar />
           </Suspense>
 
@@ -33,7 +33,7 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <Suspense fallback={<ShimmerLoader/>}>
+                  <Suspense fallback={<div></div>}>
                     <Home />
                   </Suspense>
                 }
@@ -41,7 +41,7 @@ function App() {
               <Route
                 path="/all-list"
                 element={
-                  <Suspense fallback={<ShimmerLoader/>}>
+                  <Suspense fallback={<div></div>}>
                     <AllCategoryList />
                   </Suspense>
                 }
@@ -49,7 +49,7 @@ function App() {
               <Route
                 path="/:slug/:blogslug"
                 element={
-                  <Suspense fallback={<ShimmerLoader/>}>
+                  <Suspense fallback={<div></div>}>
                     <BlogPage />
                   </Suspense>
                 }
@@ -57,7 +57,7 @@ function App() {
               <Route
                 path="/:slug"
                 element={
-                  <Suspense fallback={<ShimmerLoader/>}>
+                  <Suspense fallback={<div></div>}>
                     <CategoryDetail />
                   </Suspense>
                 }
@@ -65,7 +65,7 @@ function App() {
               <Route
                 path="/about"
                 element={
-                  <Suspense fallback={<ShimmerLoader/>}>
+                  <Suspense fallback={<div></div>}>
                     <About />
                   </Suspense>
                 }
@@ -73,7 +73,7 @@ function App() {
               <Route
                 path="/contact"
                 element={
-                  <Suspense fallback={<ShimmerLoader/>}>
+                  <Suspense fallback={<div></div>}>
                     <Contact />
                   </Suspense>
                 }
@@ -81,7 +81,7 @@ function App() {
               <Route
                 path="/privacyandpolicy"
                 element={
-                  <Suspense fallback={<ShimmerLoader/>}>
+                  <Suspense fallback={<div></div>}>
                     <PrivacyPolicy />
                   </Suspense>
                 }
@@ -89,7 +89,7 @@ function App() {
               <Route
                 path="/termsandcondition"
                 element={
-                  <Suspense fallback={<ShimmerLoader/>}>
+                  <Suspense fallback={<div></div>}>
                     <TermsAndConditions />
                   </Suspense>
                 }
@@ -97,14 +97,14 @@ function App() {
               <Route
                 path="*"
                 element={
-                  <Suspense fallback={<ShimmerLoader/>}>
+                  <Suspense fallback={<div></div>}>
                     <NotFound />
                   </Suspense>
                 }
               />
             </Routes>
           </div>
-          <Suspense fallback={<ShimmerLoader/>}>
+          <Suspense fallback={<div></div>}>
             <Footer />
           </Suspense>
         </Router>

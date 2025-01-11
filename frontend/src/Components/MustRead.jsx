@@ -9,13 +9,13 @@ export const MustRead = ({ item }) => {
           <div className="col-5 mb-2">
             <div>
               {item.image ? (
-                <img loading="lazy" height={"80px"} src={item.image} alt={item.slug} />
+                <img loading="lazy" width={640} height={427} src={item.image} alt={item.slug} />
               ) : item.image_url ? (
-                <img loading="lazy" height={"80px"} src={item.image_url} alt={item.title} />
+                <img loading="lazy" width={640} height={427} src={item.image_url} alt={item.title} />
               ) : (
                 <img
                 loading="lazy"
-                  height={"80px"}
+                width={640} height={427}
                   src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
                   alt="Placeholder"
                 />

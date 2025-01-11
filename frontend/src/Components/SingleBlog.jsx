@@ -10,7 +10,7 @@ export const SingleBlog = ({ item }) => {
               <div className="row">
                 <div>
                   <img
-                    style={{ width: "100%" }}
+                  
                     src=""
                   />
                 </div>

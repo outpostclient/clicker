@@ -29,14 +29,15 @@ export const Blog = ({ index, blog, highlightLongWords }) => {
             <div className="row">
               <div>
                 {blog.image ? (
-                  <img loading="lazy" className="rounded-4" src={blog.image} alt={blog.slug} />
+                  <img loading="lazy" className="rounded-4" src={blog.image} alt={blog.slug} width={222} height={125} />
                 ) : blog.image_url ? (
-                  <img loading="lazy" src={blog.image_url} alt={blog.title} />
+                  <img loading="lazy" src={blog.image_url} alt={blog.title} width={222} height={125}/>
                 ) : (
                   <img
                   loading="lazy"
                     src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
                     alt="Placeholder"
+                    width={222} height={125}
                   />
                 )}
               </div>

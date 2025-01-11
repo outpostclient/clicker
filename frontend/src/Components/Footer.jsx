@@ -21,7 +21,7 @@ const Footer = () => {
     fetchFooterData();
   }, []); // Empty dependency array to ensure this runs once
 
-  if (!footerData) return <div>Loading Footer...</div>;
+  if (!footerData) return;
 
   const getYear = () => {
     return new Date().getFullYear();
@@ -36,6 +36,7 @@ const Footer = () => {
               alt="logo"
               className="img-fluid"
               style={{ width: "50px" }}
+              width={50} height={50}
             />
             <p className="small mt-4">
               Copyright © {getYear()} {footerData?.title} Ltd. All Rights
