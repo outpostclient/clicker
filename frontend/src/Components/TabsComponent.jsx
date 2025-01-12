@@ -8,13 +8,16 @@ export const TabsComponent = ({ items }) => {
   const handleSelect = (key) => {
     setActiveKey(key);
   };
-  
+
+  if(!items){
+    return null;
+  }
 
   return (
     <Container>
       <div className="py-5">
         <h1 className="text-center my-4 fw-bold text-light">
-        Simplify Decisions with Unbiased Reviews <br />and Comprehensive, Transparent Guides!
+           Simplify Decisions with Unbiased Reviews <br />and Comprehensive, Transparent Guides!
         </h1>
         
         <Tab.Container

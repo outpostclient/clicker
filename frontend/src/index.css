@@ -1,6 +1,13 @@
+@font-face {
+  font-family: "Fredoka";
+  src: url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap")
+    format("woff2");
+  font-display: swap; /* Apply font-display: swap */
+}
+
 body {
   margin: 0;
-  font-family: "Josefin Sans" !important;
+  font-family: "Josefin Sans", sans-serif !important; /* Use the font immediately */
 }
 
 .main-content {
@@ -97,9 +104,9 @@ body {
 
 .blog-heading {
   color: #2d2d2d;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 25px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
 }
 
 .blog-heading-para {
@@ -203,11 +210,12 @@ a {
   text-decoration: none;
 }
 
-.nav-bg{
+.nav-bg {
   background-position: 100% !important;
 }
 
-.nav-bg, .home-bg {
+.nav-bg,
+.home-bg {
   background-size: cover !important;
 }
 
@@ -318,7 +326,7 @@ img:hover {
   filter: saturate(1.7);
 }
 
-.nav-pills .nav-item .tab-link{
+.nav-pills .nav-item .tab-link {
   background-color: #fff;
   border: 1px solid #e9e7e7;
 }
@@ -506,8 +514,7 @@ img:hover {
   transition: all 0.4s ease-in-out;
 }
 
-.widget_categories ul
-{
+.widget_categories ul {
   padding-left: 0rem;
   list-style: none;
   margin-bottom: 50px;
@@ -555,11 +562,11 @@ img:hover {
   padding: 2px 8px 0px;
 }
 
-.blog-info span{
+.blog-info span {
   padding-left: 5px;
 }
 
-.breadcumb-menu li{
+.breadcumb-menu li {
   font-size: 14px;
 }
 
@@ -575,7 +582,7 @@ img:hover {
   border-radius: 3px;
 }
 
-img{
+img {
   max-width: 100%;
   height: auto;
 }

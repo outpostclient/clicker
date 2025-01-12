@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npx postcss build/**/*.css -o build/static/css/style.purged.css",
+    "build": "react-scripts build && npx postcss build/**/*.css -o build/static/css/optimized.min.css && node update_index.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-css": "sass --quiet-deps src/input.scss src/output.css"

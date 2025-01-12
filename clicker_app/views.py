@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import status
 from .models import Category, Blog, CategoryFeature,SitePage
-from .serializers import CategorySerializer, BlogSerializer, CategoryFeatureSerializer,SitePageSerializer,ContactSerializer
+from .serializers import CategorySerializer, BlogSerializer, CategoryFeatureSerializer,SitePageSerializer,ContactSerializer,SimplifiedCategoryWithBlogsSerializer,SimplifiedCategorySerializer,MinimalCategorySerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
@@ -58,13 +58,16 @@ class BlogListByCategoryAPIView(generics.ListAPIView):
 
 class CategoryListWithBlogsAPIView(generics.ListAPIView):
     queryset = Category.objects.filter(status=True, parent__isnull=False)
-    serializer_class = CategorySerializer
+    serializer_class = SimplifiedCategoryWithBlogsSerializer
 
 class ParentCategoryListView(APIView):
     def get(self, request):
-        categories = Category.objects.filter(parent__isnull=True)
-        serializer = CategorySerializer(categories, many=True)
+        # Filter parent categories
+        categories = Category.objects.filter(parent__isnull=True).prefetch_related('children')
+        # Use the simplified serializer
+        serializer = SimplifiedCategorySerializer(categories, many=True)
         return Response(serializer.data)
+
 
 def get_category_names(request):
     query = """
@@ -125,3 +128,26 @@ def increment_page_view(request,blog_id):
         "success":True,
         "pageview":blog.pageview
     })
+
+# class AllCategoryListViewSet(APIView):
+#     def get(self, request, *args, **kwargs):
+#         # Retrieve categories with parent
+#         categories = Category.objects.filter(parent__isnull=False)
+#         serializer = MinimalCategorySerializer(categories, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+# class BlogListByCategorySlugAPIView(APIView):
+#     def get(self, request, slug, *args, **kwargs):
+#         # Fetch the category by slug
+#         category = Category.objects.filter(slug=slug).first()
+        
+#         if not category:
+#             return Response({"detail": "Category not found."}, status=404)
+
+#         # Fetch blogs associated with the category where status is True
+#         blogs = Blog.objects.filter(category=category, status=True).order_by('-updated_date')  # Sort by updated_date (latest first)
+        
+#         # Serialize the data
+#         serializer = BlogSerializer(blogs, many=True)
+        
+#         return Response(serializer.data)

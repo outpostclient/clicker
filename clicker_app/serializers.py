@@ -119,3 +119,35 @@ class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = '__all__'
+
+
+class MinimalCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'slug', 'image','image_url', 'updated_date', 'parent']
+
+class SimplifiedCategorySerializer(serializers.ModelSerializer):
+    children = MinimalCategorySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'slug', 'image_url', 'updated_date', 'parent', 'children']
+
+
+class SimplifiedBlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = ['id', 'title', 'image', 'image_url', 'slug', 'updated_date', 'author']
+
+
+class SimplifiedCategoryWithBlogsSerializer(serializers.ModelSerializer):
+    blogs = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Category
+        fields = ['id', 'blogs', 'name', 'title', 'slug', 'image', 'image_url', 'updated_date', 'parent']
+
+    def get_blogs(self, obj):
+        # Get top 6 blogs sorted by `updated_date`
+        blogs = obj.blogs.filter(status=True).order_by('-updated_date')[:6]
+        return SimplifiedBlogSerializer(blogs, many=True).data
