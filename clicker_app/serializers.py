@@ -29,18 +29,10 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
-
-    def get_blogs(self, obj):
-        blogs = obj.blogs.filter(status=True).order_by('-updated_date')
-        # Check context for a 'limit_blogs' flag
-        limit_blogs = self.context.get('limit_blogs', False)
-        if limit_blogs:
-            blogs = blogs[:6]  # Limit blogs to 6
-        return BlogSerializer(blogs, many=True).data
     
     def get_children(self,obj):
         children = Category.objects.filter(parent= obj)
-        return CategorySerializer(children, many=True, context=self.context).data
+        return CategorySerializer(children, many=True).data
 
 class CategoryFeatureSerializer(serializers.ModelSerializer):
     pros = serializers.CharField(source='pros_as_html', read_only=True)
@@ -127,34 +119,3 @@ class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = '__all__'
-
-
-class MinimalCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['id', 'name', 'slug', 'image_url', 'updated_date', 'parent']
-
-class SimplifiedCategorySerializer(serializers.ModelSerializer):
-    children = MinimalCategorySerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Category
-        fields = ['id', 'name', 'slug', 'image_url', 'updated_date', 'parent', 'children']
-
-class SimplifiedBlogSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Blog  # Replace `Blog` with the actual model name if it's different.
-        fields = ['id', 'title', 'image', 'image_url', 'slug', 'updated_date', 'author']
-
-
-class SimplifiedCategoryWithBlogsSerializer(serializers.ModelSerializer):
-    blogs = serializers.SerializerMethodField()  # Ensure this matches the method name `get_blogs`
-
-    class Meta:
-        model = Category
-        fields = ['id', 'blogs', 'name', 'title', 'slug', 'image', 'image_url', 'updated_date', 'parent']
-
-    def get_blogs(self, obj):
-        # Fetch top 6 blogs sorted by updated_date
-        blogs = obj.blogs.filter(status=True).order_by('-updated_date')[:6]
-        return SimplifiedBlogSerializer(blogs, many=True).data
