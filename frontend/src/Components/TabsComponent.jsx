@@ -8,6 +8,7 @@ export const TabsComponent = ({ items }) => {
   const handleSelect = (key) => {
     setActiveKey(key);
   };
+  
 
   return (
     <Container>
