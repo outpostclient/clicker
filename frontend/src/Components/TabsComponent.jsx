@@ -9,6 +9,11 @@ export const TabsComponent = ({ items }) => {
     setActiveKey(key);
   };
 
+  if(!items)
+  {
+    return null;
+  }
+
   return (
     <Container>
       <div className="py-5">

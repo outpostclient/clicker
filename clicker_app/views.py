@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import status
 from .models import Category, Blog, CategoryFeature,SitePage
-from .serializers import CategorySerializer, BlogSerializer, CategoryFeatureSerializer,SitePageSerializer,ContactSerializer
+from .serializers import CategorySerializer, BlogSerializer, CategoryFeatureSerializer,SitePageSerializer,ContactSerializer,SimplifiedCategorySerializer,SimplifiedCategoryWithBlogsSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
@@ -55,16 +55,20 @@ class BlogListByCategoryAPIView(generics.ListAPIView):
         current_blog_id = self.kwargs['current_blog_id']
         return Blog.objects.filter(category_id=category_id).exclude(id=current_blog_id).order_by('-updated_date', 'orderBy')
 
-
 class CategoryListWithBlogsAPIView(generics.ListAPIView):
     queryset = Category.objects.filter(status=True, parent__isnull=False)
-    serializer_class = CategorySerializer
+    serializer_class = SimplifiedCategoryWithBlogsSerializer
 
+  
 class ParentCategoryListView(APIView):
     def get(self, request):
-        categories = Category.objects.filter(parent__isnull=True)
-        serializer = CategorySerializer(categories, many=True)
+        # Filter parent categories
+        categories = Category.objects.filter(parent__isnull=True).prefetch_related('children')
+        # Use the simplified serializer
+        serializer = SimplifiedCategorySerializer(categories, many=True)
         return Response(serializer.data)
+
+
 
 def get_category_names(request):
     query = """

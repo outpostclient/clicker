@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 import { formatDate } from "../Utils/DateFormatter";
 
 export const HomeAccordianItem = ({category,index}) => {
+  if(!category)
+  {
+    return null;
+  }
   return (
     <Accordion.Item
       key={category.id}
@@ -63,7 +67,7 @@ export const HomeAccordianItem = ({category,index}) => {
               }}
             />
             <Badge bg="primary" className="mb-3">
-              {formatDate(category.date_created)}
+              {formatDate(category.updated_date)}
             </Badge>
             <div>
               <Link
@@ -77,7 +81,7 @@ export const HomeAccordianItem = ({category,index}) => {
         </Row>
 
         <Row className="mt-5">
-          {category.blogs.map((blog, blogIndex) => (
+          {category?.blogs?.map((blog, blogIndex) => (
             <Col key={blogIndex} xs={12} lg={4} className="mb-3">
               <div className="">
                 <Row className="align-items-center">

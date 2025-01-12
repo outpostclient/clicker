@@ -11,7 +11,10 @@ export const HeadMetaContent = ({ singleBlog, preloadImage, canonialUrl }) => {
         name="keywords"
         content={singleBlog?.tags?.join(", ") || "Keywords"}
       />
-      <meta name="author" content={singleBlog?.author ? "Unfilter Choice" : "Unfilter Choice"} />
+      <meta
+        name="author"
+        content={singleBlog?.author ? "Unfilter Choice" : "Unfilter Choice"}
+      />
 
       {canonialUrl ? (
         <link
@@ -33,10 +36,7 @@ export const HeadMetaContent = ({ singleBlog, preloadImage, canonialUrl }) => {
           content={`https://www.unfilterchoice.com/${canonialUrl}`}
         />
       ) : (
-        <meta
-          property="og:url"
-          content={`https://www.unfilterchoice.com/`}
-        />
+        <meta property="og:url" content={`https://www.unfilterchoice.com/`} />
       )}
       <meta property="og:site_name" content="Unfilter Choice" />
       <meta
@@ -55,9 +55,14 @@ export const HeadMetaContent = ({ singleBlog, preloadImage, canonialUrl }) => {
       {/* Preloading Image */}
       {preloadImage && <link rel="preload" href={preloadImage} as="image" />}
 
-      <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&amp;family=Josefin+Sans:ital,wght@0,100..700;1,100..700&amp;display=swap" rel="preload" as="font" crossOrigin=""/>
-
-      
+      <link
+        rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        as="font"
+        type="font/woff2"
+        crossorigin="anonymous"
+        onLoad="this.onload=null;this.rel='stylesheet'"
+      />
     </Helmet>
   );
 };
