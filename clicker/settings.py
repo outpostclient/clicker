@@ -39,7 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django_brotli.middleware.BrotliMiddleware',  # Add BrotliMiddleware
+    # 'django_brotli.middleware.BrotliMiddleware',  # Add BrotliMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
