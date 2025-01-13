@@ -57,12 +57,12 @@ MIDDLEWARE = [
 #      "http://127.0.0.1:3001",
 # ]
 
-BROTLI_MIMETYPES = [
-    'text/html',
-    'text/css',
-    'application/javascript',
-    'application/json',
-]
+# BROTLI_MIMETYPES = [
+#     'text/html',
+#     'text/css',
+#     'application/javascript',
+#     'application/json',
+# ]
 
 
 # development
