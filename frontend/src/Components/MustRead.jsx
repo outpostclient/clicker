@@ -10,16 +10,9 @@ export const MustRead = ({ item }) => {
             <div>
               {item.image ? (
                 <img loading="lazy" width={640} height={427} src={item.image} alt={item.slug} />
-              ) : item.image_url ? (
-                <img loading="lazy" width={640} height={427} src={item.image_url} alt={item.title} />
               ) : (
-                <img
-                loading="lazy"
-                width={640} height={427}
-                  src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
-                  alt="Placeholder"
-                />
-              )}
+                <img loading="lazy" width={640} height={427} src={item.image_url} alt={item.title} />
+              ) }
             </div>
           </div>
           <div className="col-7 mb-2">

@@ -38,7 +38,7 @@ export const HomeAccordianItem = ({category,index}) => {
                   width={529}
                   height={298}
                 />
-              ) : category.image_url ? (
+              ) : (
                 <img
                   loading="lazy"
                   className="shadow-lg w-100 rounded"
@@ -47,16 +47,7 @@ export const HomeAccordianItem = ({category,index}) => {
                   width={529}
                   height={298}
                 />
-              ) : (
-                <img
-                  loading="lazy"
-                  className="shadow-lg w-100 rounded"
-                  src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
-                  alt="Placeholder"
-                  width={529}
-                  height={298}
-                />
-              )}
+              ) }
             </div>
           </Col>
           <Col xs={12} lg={6}>
@@ -96,7 +87,7 @@ export const HomeAccordianItem = ({category,index}) => {
                         width={160}
                         height={90}
                       />
-                    ) : blog.image_url ? (
+                    ) : (
                       <img
                         loading="lazy"
                         className="shadow-lg w-100 rounded"
@@ -105,16 +96,7 @@ export const HomeAccordianItem = ({category,index}) => {
                         width={160}
                         height={90}
                       />
-                    ) : (
-                      <img
-                        loading="lazy"
-                        className="shadow-lg w-100 rounded"
-                        src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
-                        alt="Placeholder"
-                        width={160}
-                        height={90}
-                      />
-                    )}
+                    ) }
                   </Col>
                   <Col xs={12} lg={6}>
                     <Card.Body>

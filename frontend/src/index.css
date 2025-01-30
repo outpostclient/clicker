@@ -586,3 +586,8 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.generated-content h1,.generated-content h2,.generated-content h3, .generated-content h4{
+  font-size: 21px;
+  font-weight: 700;
+}

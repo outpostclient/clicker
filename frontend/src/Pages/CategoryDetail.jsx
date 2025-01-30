@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { DataContext } from "../Contexts/DataContext";
 import { Blog } from "../Components/Blog";
@@ -9,15 +9,17 @@ import ShimmerLoader from "../Components/ShimmerLoader";
 
 const CategoryDetail = () => {
   const { slug } = useParams();
-  const { categories,loading, blogs } = useContext(DataContext);
+  const {
+    blogListUsingCategorySlug,
+    loading,
+    fetchBlogsListUsingCategorySlug,
+  } = useContext(DataContext);
 
-  const category = categories?.find((cat) => cat.slug === slug);
+  useEffect(() => {
+    fetchBlogsListUsingCategorySlug(slug);
+  }, [slug]);
 
-  console.log("category details", category);
-
-  const filterData = category
-    ? blogs?.filter((blog) => blog.category === category.id)
-    : [];
+  console.log("blogListUsingCategorySlug", blogListUsingCategorySlug);
 
   const highlightLongWords = (title) => {
     const words = title.split(" ");
@@ -32,7 +34,7 @@ const CategoryDetail = () => {
       </React.Fragment>
     ));
   };
-  if (!categories) return null;
+  if (!blogListUsingCategorySlug) return null;
 
   return (
     <div className="container mt-5">
@@ -45,15 +47,18 @@ const CategoryDetail = () => {
             <Link to="/">Home</Link>
           </li>
           <li>/</li>
-          <li>{category?.title}</li>
+          <li>{blogListUsingCategorySlug?.title}</li>
         </ul>
       </div>
-      <HeadMetaContent singleBlog={category} canonialUrl={category.slug} />
+      <HeadMetaContent
+        singleBlog={blogListUsingCategorySlug}
+        canonialUrl={blogListUsingCategorySlug.slug}
+      />
       <div className="row gx-5">
         <div className="col-12 col-lg-9">
           <div className="row">
-            {filterData.length > 0 ? (
-              filterData.map((blog, index) => (
+            {blogListUsingCategorySlug?.blogs?.length > 0 ? (
+              blogListUsingCategorySlug?.blogs?.map((blog, index) => (
                 <div key={index} className="col-12 mb-3">
                   <Blog
                     index={index}
@@ -68,8 +73,7 @@ const CategoryDetail = () => {
           </div>
         </div>
         <div className="col-12 col-lg-3">
-          <WidgetCategories {...{ categories }} />
-          <Tags {...{ categories }} />
+          <WidgetCategories />
         </div>
       </div>
     </div>

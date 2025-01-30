@@ -7,6 +7,8 @@ from django.conf import settings
 from taggit.managers import TaggableManager  # For tags
 from django.utils.timezone import now
 import re
+import requests
+
 
 def generate_alt_text(title):
         words = re.findall(r'\b\w+\b', title)
@@ -26,12 +28,18 @@ class Category(models.Model):
     updated_date = models.DateTimeField(auto_now=True)  # New field for last updated timestamp
     date_created = models.DateTimeField(default=now)
 
+    DEFAULT_IMAGE_PATH = 'blog_images/default_image_url.webp'
+
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+
+        if not self.image and not self.image_url:
+            self.image = self.DEFAULT_IMAGE_PATH
+            
         super(Category, self).save(*args, **kwargs)
     
     class Meta:
@@ -59,12 +67,22 @@ class Blog(models.Model):
     pageview = models.PositiveIntegerField(default=0)  # Total dislikes
     tags = TaggableManager()  # Tags for the blog
 
+    DEFAULT_IMAGE_PATH = 'blog_images/default_image_url.webp'
+
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
+
+        # Check if description is empty, then generate it using the AI microservice
+        if not self.content:
+            self.content = self.generate_description()
+
+        if not self.image and not self.image_url:
+            self.image = self.DEFAULT_IMAGE_PATH
+
         super(Blog, self).save(*args, **kwargs)
 
     @property
@@ -77,6 +95,22 @@ class Blog(models.Model):
     
     def alt_text(self):
         return generate_alt_text(self.title)
+    
+
+    def generate_description(self):
+        """
+        Calls the AI microservice to generate content for the description field based on the title.
+        """
+        ai_service_url = "http://unfilterchoice.com/generate-content"  # Replace with the actual microservice URL
+        payload = {"prompt": self.title}
+        try:
+            response = requests.post(ai_service_url, json=payload)
+            response_data = response.json()
+            return response_data.get("description", "Description could not be generated.")
+        except requests.exceptions.RequestException as e:
+            # Log the error and return a fallback description
+            print(f"Error connecting to the AI microservice: {e}")
+            return "Default description content."
 
 
 class CategoryFeature(models.Model):

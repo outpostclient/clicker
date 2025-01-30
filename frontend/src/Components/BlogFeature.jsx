@@ -20,16 +20,9 @@ export const BlogFeature = ({ item }) => {
                       alt={feature.slug}
                       width={1280} height={720}
                     />
-                  ) : feature.image_url ? (
-                    <img loading="lazy" style={{width:"100%"}} src={feature.image_url} alt={feature.title} width={1280} height={720}/>
                   ) : (
-                    <img
-                    loading="lazy"
-                      src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
-                      alt="Placeholder"
-                      width={1280} height={720}
-                    />
-                  )}
+                    <img loading="lazy" style={{width:"100%"}} src={feature.image_url} alt={feature.title} width={1280} height={720}/>
+                  ) }
                 </div>
               </div>
             </div>

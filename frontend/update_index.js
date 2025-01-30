@@ -55,3 +55,8 @@ fs.readFile(filePath, 'utf8', (err, data) => {
     }
   });
 });
+
+
+// this code for jjson to build the optimizes css 
+
+// "build": "react-scripts build && npx postcss build/**/*.css -o build/static/css/optimized.min.css && node update_index.js",

@@ -10,9 +10,8 @@ import axios from "axios";
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const [loading,setLoading] = useState(true);
-  const [categories, setCategories] = useState([]);
-  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [blogListUsingCategorySlug, setBlogListUsingCategorySlug] = useState([]);
   const [singleBlog, setSingleBlog] = useState([]);
   const [blogListExcludeCurrent, setblogListExcludeCurrent] = useState([]);
   const [categorysWithBlogs, setCategorysWithBlogs] = useState([]);
@@ -23,41 +22,21 @@ export const DataProvider = ({ children }) => {
   ] = useState([]);
   const [pageViewState, setpageViewState] = useState([]); // Likes state
 
-
   const [fetchSitePageRecordUsingSlug, setFetchSitePageRecordUsingSlug] =
     useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/categories/`
-        );
-        setCategories(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.log("error fetching categories", error);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchBlogsData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/blogs/`
-        );
-        setBlogs(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.log("error fetching categories", error);
-        setLoading(false);
-      }
-    };
-    fetchBlogsData();
-  }, []);
+  const fetchBlogsListUsingCategorySlug = async (slug) => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/categories/${slug}`
+      );
+      setBlogListUsingCategorySlug(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log("error fetching categories", error);
+      setLoading(false);
+    }
+  };
 
   const fetchSingleBlogData = async (slug) => {
     try {
@@ -152,23 +131,23 @@ export const DataProvider = ({ children }) => {
     fetchCategoryForCategoryFeatureNotNull();
   }, []);
 
-  const blogPageView = async(blogId) => {
+  const blogPageView = async (blogId) => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/blogs/${blogId}/view/`);
-      console.log("reposne of page view",response.data);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/blogs/${blogId}/view/`
+      );
+      console.log("reposne of page view", response.data);
       setpageViewState(response.data.pageview);
       setLoading(false);
     } catch (error) {
       console.error(`Error toggling like for blog ${blogId}:`, error);
       setLoading(false);
     }
-  }
+  };
 
   const value = useMemo(
     () => ({
       loading,
-      categories,
-      blogs,
       singleBlog,
       blogListExcludeCurrent,
       categorysWithBlogs,
@@ -176,15 +155,15 @@ export const DataProvider = ({ children }) => {
       fetchCategoryForCategoryFeatureNotNull,
       fetchSitePageRecordUsingSlug,
       pageViewState,
+      blogListUsingCategorySlug,
       blogPageView,
       fetchSingleBlogData,
       fetchBlogListExcludeCurrent,
       fetchSitePageRecord,
+      fetchBlogsListUsingCategorySlug,
     }),
     [
       loading,
-      categories,
-      blogs,
       singleBlog,
       blogListExcludeCurrent,
       categorysWithBlogs,
@@ -192,10 +171,12 @@ export const DataProvider = ({ children }) => {
       fetchCategoryForCategoryFeatureNotNull,
       fetchSitePageRecordUsingSlug,
       pageViewState,
+      blogListUsingCategorySlug,
       blogPageView,
       fetchSingleBlogData,
       fetchBlogListExcludeCurrent,
       fetchSitePageRecord,
+      fetchBlogsListUsingCategorySlug,
     ]
   );
 

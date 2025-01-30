@@ -63,8 +63,7 @@ const BlogPage = () => {
               className="img-fluid rounded mb-4"
               src={
                 singleBlog.image || 
-                singleBlog.image_url || 
-                "https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
+                singleBlog.image_url
               }
               alt={singleBlog.alt_text || "Placeholder"}
               width={1344} height={768}
@@ -78,7 +77,7 @@ const BlogPage = () => {
                 <span>{pageViewState}</span>
               </span>
             </div>
-            <div
+            <div className="generated-content"
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(singleBlog.content),
               }}

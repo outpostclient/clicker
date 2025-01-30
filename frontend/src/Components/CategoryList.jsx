@@ -1,9 +1,9 @@
-import DOMPurify from "dompurify";
 import React, { useMemo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const CategoryList = ({ categories }) => {
-  const { slug } = useParams();
+
+  console.log(categories);
 
   const memoizedCategories = useMemo(() => categories, [categories]);
   return (
@@ -14,20 +14,12 @@ export const CategoryList = ({ categories }) => {
             <div>
               {cat.image ? (
                 <img loading="lazy" className="rounded-3" src={cat.image} alt={cat.slug} width={304} height={171}/>
-              ) : cat.image_url ? (
+              ) : (
                 <img
                 loading="lazy"
                   className="rounded-3"
                   src={cat.image_url}
                   alt={cat.title}
-                  width={304} height={171}
-                />
-              ) : (
-                <img
-                loading="lazy"
-                  className="rounded-3"
-                  src="https://via.placeholder.com/1920x1080.png/e0c1e6/000000?Text=1920x1080"
-                  alt="Placeholder"
                   width={304} height={171}
                 />
               )}

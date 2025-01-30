@@ -62,7 +62,7 @@ const Home = () => {
       >
         <TabsComponent items={parentCategorysWithBlogs} />
       </div>
-      <div className="home container mt-4 mb-4">
+      <div className="home container mt-4 mb-4 my-custom-class">
         <div className="d-flex align-items-center justify-content-between mb-3">
           <div>
             <p className="fw-bold mb-0">All Popular Category List</p>
